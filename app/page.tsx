@@ -1,9 +1,10 @@
+import Container from "@/components/containers/Container";
 import Post from "@/components/post";
 
 export default function Home() {
   return (
-    <div className=" container mx-auto">
+    <Container>
       <Post />
-    </div>
+    </Container>
   );
 }
