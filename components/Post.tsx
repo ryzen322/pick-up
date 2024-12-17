@@ -3,11 +3,7 @@ import Posts from "./Posts";
 import { db } from "@/server/db";
 
 const Post = async () => {
-  const posts = await db.query.posts.findMany({
-    with: {
-      comments: true,
-    },
-  });
+  const posts = await db.query.posts.findMany();
 
   return (
     <ul className=" w-full flex flex-col">

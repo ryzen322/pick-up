@@ -1,13 +1,17 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Likes from "./form/Likes";
 import Comments from "./form/Comments";
 import Retweet from "./form/Retweet";
 import Send from "./form/Send";
 import Svg from "./svg/svg";
 import { InsterPost } from "@/server/schema";
+import { formatDistanceToNow } from "date-fns";
 
 const Posts = (props: InsterPost) => {
-  const { name, title } = props;
+  const { name, title, createdAt, id } = props;
+
+  const date = formatDistanceToNow(createdAt!, { addSuffix: true });
+
   return (
     <li className=" w-full flex gap-2 border-b border-stone-500/50 px-3 p-5">
       <div className=" h-9 w-9 shrink-0 rounded-full bg-stone-700/60  cursor-pointer"></div>
@@ -16,7 +20,7 @@ const Posts = (props: InsterPost) => {
           <h1 className=" font-medium text-[14.5px] cursor-pointer hover:underline">
             {name}
           </h1>
-          <p className=" text-[14.5px] text-stone-400 font-light">22h</p>
+          <p className=" text-xs text-stone-500 font-normal">{date}</p>
 
           <button className=" ml-auto">
             <Svg
@@ -30,7 +34,9 @@ const Posts = (props: InsterPost) => {
         {/* end title */}
         <div className=" w-full flex items-center gap-6 py-2 mt-3">
           <Likes />
-          <Comments />
+          <Suspense fallback={<p>loading....</p>}>
+            <Comments id={id!} />
+          </Suspense>
           <Retweet />
           <Send />
         </div>
