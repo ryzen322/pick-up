@@ -1,0 +1,1 @@
+ALTER TABLE "comment" DROP COLUMN "author_id";

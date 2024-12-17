@@ -4,15 +4,10 @@ import {
   text,
   primaryKey,
   integer,
+  serial,
 } from "drizzle-orm/pg-core";
-import postgres from "postgres";
-import { drizzle } from "drizzle-orm/postgres-js";
 import type { AdapterAccountType } from "next-auth/adapters";
-
-const connectionString = "postgres://postgres:postgres@localhost:5432/drizzle";
-const pool = postgres(connectionString, { max: 1 });
-
-export const db = drizzle(pool);
+import { relations } from "drizzle-orm";
 
 export const users = pgTable("user", {
   id: text("id")
@@ -48,14 +43,36 @@ export const accounts = pgTable(
   })
 );
 
-export const Profile = pgTable("profile", {
-  userId: text("userId")
-    .notNull()
-    .references(() => users.id, { onDelete: "cascade" }),
+export const posts = pgTable("posts", {
+  id: serial("id").primaryKey().notNull(),
   content: text("content"),
   title: text("title"),
   name: text("name").notNull(),
   email: text("email").notNull(),
   image: text("image"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow(),
 });
+
+export const comments = pgTable("comment", {
+  id: serial("id").primaryKey().notNull(),
+  CommentsId: serial("CommentsId")
+    .references(() => posts.id, { onDelete: "cascade" }) // Foreign key reference to `tweet` table's `id`
+    .notNull(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  comment: text("comment").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow(),
+});
+
+export const postRelations = relations(posts, ({ many }) => ({
+  comments: many(comments),
+}));
+
+export const commentsRelations = relations(comments, ({ one }) => ({
+  author: one(posts, {
+    fields: [comments.CommentsId],
+    references: [posts.id],
+  }),
+}));

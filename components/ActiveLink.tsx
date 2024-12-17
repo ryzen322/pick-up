@@ -20,9 +20,6 @@ ActiveLinkProps) {
 
   const isActive = pathname === href;
 
-  console.log(href);
-  console.log(pathname);
-
   return (
     <Link
       href={href}
