@@ -1,7 +1,7 @@
 import React from "react";
 import Svg from "../svg/svg";
 
-const Comments = () => {
+const Comments = ({}) => {
   return (
     <div className=" flex items-center gap-1 cursor-pointer">
       <Svg

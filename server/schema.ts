@@ -76,3 +76,5 @@ export const commentsRelations = relations(comments, ({ one }) => ({
     references: [posts.id],
   }),
 }));
+
+export type InsterPost = typeof posts.$inferInsert;

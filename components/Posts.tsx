@@ -4,14 +4,18 @@ import Comments from "./form/Comments";
 import Retweet from "./form/Retweet";
 import Send from "./form/Send";
 import Svg from "./svg/svg";
+import { InsterPost } from "@/server/schema";
 
-const Posts = () => {
+const Posts = (props: InsterPost) => {
+  const { name, title } = props;
   return (
-    <li className=" w-full flex gap-2 border-b border-stone-500/50 p-4">
-      <div className=" h-9 w-9 shrink-0 rounded-full bg-stone-700/60"></div>
+    <li className=" w-full flex gap-2 border-b border-stone-500/50 px-3 p-5">
+      <div className=" h-9 w-9 shrink-0 rounded-full bg-stone-700/60  cursor-pointer"></div>
       <div className=" flex flex-col w-full">
         <div className=" flex gap-2 w-full items-center">
-          <h1 className=" font-medium text-[14.5px]">touchmyfeelings</h1>
+          <h1 className=" font-medium text-[14.5px] cursor-pointer hover:underline">
+            {name}
+          </h1>
           <p className=" text-[14.5px] text-stone-400 font-light">22h</p>
 
           <button className=" ml-auto">
@@ -22,12 +26,9 @@ const Posts = () => {
           </button>
         </div>
         {/* title */}
-        <p className=" text-[15px] leading-5">
-          Pet peeve: mga tropang nireretuhan pa rin ng ibang babae yung mga
-          pamilyado na 🤡
-        </p>
+        <p className=" text-[15px] leading-5 ">{title}</p>
         {/* end title */}
-        <div className=" w-full flex items-center gap-6 py-2">
+        <div className=" w-full flex items-center gap-6 py-2 mt-3">
           <Likes />
           <Comments />
           <Retweet />
