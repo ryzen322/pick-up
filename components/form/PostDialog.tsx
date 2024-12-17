@@ -1,7 +1,8 @@
 import { auth } from "@/auth";
 import React from "react";
+import { DrawerDialogDemo } from "../PostDrawer";
 
-const PostForm = async () => {
+const PostDialog = async () => {
   const user = await auth();
   return (
     <div className=" hidden sm:flex items-center gap-2 h-20 w-full  px-4 border-b border-stone-300">
@@ -14,14 +15,15 @@ const PostForm = async () => {
       </div>
       <input
         type="text"
+        disabled
         placeholder="What's new?"
         className=" placeholder:text-sm placeholder:font-semibold placeholder:text-stone-400/85 outline-none"
       />
-      <button className=" text-black ml-auto py-1 px-4 border border-stone-300 rounded-lg">
-        Post
-      </button>
+      <div className=" text-black ml-auto py-1 px-4 border border-stone-300 rounded-lg">
+        <DrawerDialogDemo />
+      </div>
     </div>
   );
 };
 
-export default PostForm;
+export default PostDialog;

@@ -1,11 +1,11 @@
 import ActiveLink from "@/components/ActiveLink";
-import PostForm from "@/components/form/Post-Form";
+import PostDialog from "@/components/form/PostDialog";
 import Post from "@/components/Post";
 
 export default function Home() {
   return (
     <section className=" flex flex-col w-full">
-      <PostForm />
+      <PostDialog />
       <div className=" w-full grid grid-cols-2">
         <ActiveLink
           href="/"

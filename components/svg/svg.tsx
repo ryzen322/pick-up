@@ -8,7 +8,7 @@ const Svg = ({ icon, size }: { icon: string; size?: string }) => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="grey"
-      className={`${size ? size : "size-7"}`}
+      className={`${size ? size : "size-5"}`}
     >
       <path strokeLinecap="round" strokeLinejoin="round" d={icon} />
     </svg>

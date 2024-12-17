@@ -30,7 +30,10 @@ const Posts = (props: InsterPost) => {
           </button>
         </div>
         {/* title */}
-        <p className=" text-[15px] leading-5 ">{title}</p>
+        <p className=" text-[14px] leading-5 max-w-[24rem] sm:text-[15px]">
+          {title}
+        </p>
+        {/* <div className="">{content}</div> */}
         {/* end title */}
         <div className=" w-full flex items-center gap-6 py-2 mt-3">
           <Likes />
