@@ -47,3 +47,15 @@ export const accounts = pgTable(
     }),
   })
 );
+
+export const Profile = pgTable("profile", {
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  content: text("content"),
+  title: text("title"),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  image: text("image"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
