@@ -3,10 +3,10 @@ import Likes from "./form/Likes";
 import Comments from "./form/Comments";
 import Retweet from "./form/Retweet";
 import Send from "./form/Send";
-import Svg from "./svg/svg";
 import { InsterPost } from "@/server/schema";
 import { formatDistanceToNow } from "date-fns";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import AvatarProfile from "./AvatarProfile";
+import { PopoverDemo } from "./form/Pop-over";
 
 const Posts = (props: InsterPost) => {
   const { name, title, createdAt, id, image, content } = props;
@@ -16,10 +16,7 @@ const Posts = (props: InsterPost) => {
   return (
     <li className=" w-full flex gap-2 border-b border-stone-500/50 px-3 p-5">
       <div className=" h-9 w-9 shrink-0 rounded-full cursor-pointer overflow-hidden">
-        <Avatar>
-          <AvatarImage src={image ? image : undefined} />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
+        <AvatarProfile image={image!} name={name} />
       </div>
       <div className=" flex flex-col w-full">
         <div className=" flex gap-2 w-full items-center">
@@ -28,12 +25,16 @@ const Posts = (props: InsterPost) => {
           </h1>
           <p className=" text-xs text-stone-500 font-normal">{date}</p>
 
-          <button className=" ml-auto">
+          {/* <button className=" ml-auto">
             <Svg
               size="size-5"
               icon="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
             />
-          </button>
+          </button> */}
+
+          <div className=" ml-auto ">
+            <PopoverDemo />
+          </div>
         </div>
         {/* title */}
         <p className=" text-[14px] leading-5 max-w-[24rem] sm:text-[15px]">
