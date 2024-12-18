@@ -28,12 +28,16 @@ export const createPost = async (post: FormSchemaType) => {
   try {
     const { content, title } = postFormValidation.data;
 
-    await db.insert(posts).values({ name, content, title, email, image });
+    const postTitle = await db
+      .insert(posts)
+      .values({ name, content, title, email, image })
+      .returning();
 
     revalidatePath("/");
     return {
       message: "succes fully added new data ",
       succes: postFormValidation.success,
+      title: postTitle[0].title,
     };
   } catch (error) {
     return {

@@ -16,6 +16,7 @@ import { formSchema, FormSchemaType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createPost } from "@/actions/create-post";
 import { Textarea } from "../ui/textarea";
+import { toast } from "sonner";
 
 function PostForm({ className }: React.ComponentProps<"form">) {
   const form = useForm<FormSchemaType>({
@@ -30,6 +31,14 @@ function PostForm({ className }: React.ComponentProps<"form">) {
     try {
       const post = await createPost(form.getValues());
       if (post.succes) {
+        toast(`${post.message}`, {
+          description: `title: ${post.title}`,
+          action: {
+            label: "Undo",
+            onClick: () => console.log("Undo"),
+          },
+        });
+
         form.reset();
       }
     } catch (error) {
