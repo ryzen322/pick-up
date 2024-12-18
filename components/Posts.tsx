@@ -6,15 +6,21 @@ import Send from "./form/Send";
 import Svg from "./svg/svg";
 import { InsterPost } from "@/server/schema";
 import { formatDistanceToNow } from "date-fns";
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
 const Posts = (props: InsterPost) => {
-  const { name, title, createdAt, id } = props;
+  const { name, title, createdAt, id, image, content } = props;
 
   const date = formatDistanceToNow(createdAt!, { addSuffix: true });
 
   return (
     <li className=" w-full flex gap-2 border-b border-stone-500/50 px-3 p-5">
-      <div className=" h-9 w-9 shrink-0 rounded-full bg-stone-700/60  cursor-pointer"></div>
+      <div className=" h-9 w-9 shrink-0 rounded-full cursor-pointer overflow-hidden">
+        <Avatar>
+          <AvatarImage src={image ? image : undefined} />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+      </div>
       <div className=" flex flex-col w-full">
         <div className=" flex gap-2 w-full items-center">
           <h1 className=" font-medium text-[14.5px] cursor-pointer hover:underline">
@@ -33,7 +39,7 @@ const Posts = (props: InsterPost) => {
         <p className=" text-[14px] leading-5 max-w-[24rem] sm:text-[15px]">
           {title}
         </p>
-        {/* <div className="">{content}</div> */}
+        <div className="">{content}</div>
         {/* end title */}
         <div className=" w-full flex items-center gap-6 py-2 mt-3">
           <Likes />

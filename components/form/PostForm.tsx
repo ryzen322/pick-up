@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { formSchema, FormSchemaType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createPost } from "@/actions/create-post";
+import { Textarea } from "../ui/textarea";
 
 function PostForm({ className }: React.ComponentProps<"form">) {
   const form = useForm<FormSchemaType>({
@@ -62,7 +63,11 @@ function PostForm({ className }: React.ComponentProps<"form">) {
             <FormItem>
               <FormLabel>Content</FormLabel>
               <FormControl>
-                <Input placeholder="My First Post" {...field} />
+                <Textarea
+                  placeholder="Tell us a little bit about yourself"
+                  className="resize-none"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

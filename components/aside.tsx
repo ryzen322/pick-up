@@ -6,7 +6,7 @@ import PostIcon from "./PostIcon";
 
 const Aside = () => {
   return (
-    <aside className=" w-full fixed bottom-0 left-0 right-0 h-16  flex items-center p-3   sm:hidden">
+    <aside className=" w-full fixed bottom-0 left-0 right-0 h-16  flex items-center p-3  bg-white sm:hidden">
       <nav className=" w-full h-full grid grid-cols-5 gap-1 sm:grid-flow-row">
         <NavLinks
           route="/"
