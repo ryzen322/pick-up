@@ -9,14 +9,14 @@ import AvatarProfile from "./AvatarProfile";
 import { PopoverDemo } from "./form/Pop-over";
 
 const Posts = (props: InsterPost) => {
-  const { name, title, createdAt, id, image, content } = props;
+  const { name, title, createdAt, id, content } = props;
 
   const date = formatDistanceToNow(createdAt!, { addSuffix: true });
 
   return (
     <li className=" w-full flex gap-2 border-b border-stone-500/50 px-3 p-5">
       <div className=" h-9 w-9 shrink-0 rounded-full cursor-pointer overflow-hidden">
-        <AvatarProfile image={image!} name={name} />
+        <AvatarProfile />
       </div>
       <div className=" flex flex-col w-full">
         <div className=" flex gap-2 w-full items-center">

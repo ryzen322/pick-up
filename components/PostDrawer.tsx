@@ -14,7 +14,6 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
@@ -56,19 +55,42 @@ export function DrawerDialogDemo() {
         </Button>
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader className="text-left">
-          <DrawerTitle>Create Post</DrawerTitle>
-          <DrawerDescription>
-            Make changes to your profile here. Click save when youre done.
-          </DrawerDescription>
-        </DrawerHeader>
-        <PostForm className="px-4" />
-        <DrawerFooter className="pt-2">
+        <DrawerHeader className=" flex justify-between items-center 0 px-0 pt-0 pb-2 border-b border-stone-400/50">
           <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="ghost" className="  max-w-[5rem]">
+              Cancel
+            </Button>
           </DrawerClose>
-        </DrawerFooter>
+          <DrawerTitle className=" text-[15px] font-bold">
+            New Thread
+          </DrawerTitle>
+          <DrawerClose asChild className=" mr-3 cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+              />
+            </svg>
+          </DrawerClose>
+        </DrawerHeader>
+        <PostForm className="px-4 pt-3" />
+        <DrawerFooter className="pt-2"></DrawerFooter>
       </DrawerContent>
     </Drawer>
   );
+}
+
+{
+  /* <Svg
+icon="
+M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+/> */
 }
