@@ -14,16 +14,16 @@ const Posts = (props: InsterPost) => {
   const date = formatDistanceToNow(createdAt!, { addSuffix: true });
 
   return (
-    <li className=" w-full flex gap-2 border-b border-stone-500/50 px-3 py-5">
-      <div className=" h-9 w-9 shrink-0 rounded-full cursor-pointer overflow-hidden mt-1">
+    <li className=" w-full flex gap-2 border-b border-stone-500/50 px-3 py-2">
+      <div className=" h-9 w-9 shrink-0 rounded-full cursor-pointer overflow-hidden mt-[7px]">
         <AvatarProfile name={name} image={image!} />
       </div>
       <div className=" flex flex-col w-full">
         <div className=" flex gap-2 w-full items-center">
-          <h1 className=" font-medium text-[14.5px] cursor-pointer hover:underline">
+          <h1 className=" font-medium text-[13px] cursor-pointer hover:underline">
             {name}
           </h1>
-          <p className=" text-xs text-stone-500 font-normal">{date}</p>
+          <p className="  text-[12px] text-stone-500 font-normal">{date}</p>
 
           {/* <button className=" ml-auto">
             <Svg
@@ -37,12 +37,12 @@ const Posts = (props: InsterPost) => {
           </div>
         </div>
         {/* title */}
-        <p className=" text-[15px] leading-5 max-w-[24rem] sm:text-[15px]">
+        <p className=" text-xs leading-5 max-w-[24rem] sm:text-[15px] relative bottom-[5px]">
           {title}
         </p>
-        <div className=" text-sm mt-3">{content}</div>
+        <div className=" text-xs mt-1">{content}</div>
         {/* end title */}
-        <div className=" w-full flex items-center gap-6 py-2 mt-3">
+        <div className=" w-full flex items-center gap-6 py-2">
           <Likes />
           <Suspense fallback={<p>loading....</p>}>
             <Comments id={id!} />
