@@ -11,7 +11,7 @@ const Post = async () => {
   });
 
   return (
-    <ul className=" w-full flex flex-col">
+    <ul className=" w-full flex flex-col mb-10">
       {posts.map((post) => (
         <Posts key={post.id} {...post} />
       ))}

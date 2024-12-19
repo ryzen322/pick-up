@@ -85,7 +85,7 @@ function PostForm({ className }: React.ComponentProps<"form">) {
                     <Input
                       placeholder="What's new?"
                       {...field}
-                      className=" h-6 px-0 focus-visible:ring-transparent outline-none focus-visible:ring-white placeholder:text-xs border border-white relative text-xs"
+                      className=" h-6 px-0 focus-visible:ring-transparent outline-none focus-visible:ring-white placeholder:text-xs border relative text-xs "
                     />
                   </FormControl>
                   <FormMessage />
