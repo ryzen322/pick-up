@@ -4,6 +4,9 @@ import { db } from "@/server/db";
 
 const Post = async () => {
   const posts = await db.query.posts.findMany({
+    with: {
+      likes: true,
+    },
     orderBy: (posts, { desc }) => [desc(posts.createdAt)],
   });
 

@@ -36,6 +36,13 @@
       "when": 1734424093293,
       "tag": "0004_giant_franklin_storm",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1734596223624,
+      "tag": "0005_lying_vindicator",
+      "breakpoints": true
     }
   ]
 }

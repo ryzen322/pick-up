@@ -66,13 +66,31 @@ export const comments = pgTable("comment", {
   updatedAt: timestamp("updatedAt").defaultNow(),
 });
 
+export const likes = pgTable("likes", {
+  id: serial("id").primaryKey().notNull(),
+  likesId: serial("likesId")
+    .references(() => posts.id, { onDelete: "cascade" }) // Foreign key reference to `tweet` table's `id`
+    .notNull(),
+  name: text("name").notNull(),
+  email: text("email").notNull().unique(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow(),
+});
+
 export const postRelations = relations(posts, ({ many }) => ({
   comments: many(comments),
+  likes: many(likes),
 }));
 
 export const commentsRelations = relations(comments, ({ one }) => ({
   author: one(posts, {
     fields: [comments.CommentsId],
+    references: [posts.id],
+  }),
+}));
+export const likesRelations = relations(likes, ({ one }) => ({
+  author: one(posts, {
+    fields: [likes.likesId],
     references: [posts.id],
   }),
 }));
