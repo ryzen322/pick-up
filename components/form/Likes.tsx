@@ -4,6 +4,7 @@ import { likePost } from "@/actions/like-post";
 import { db } from "@/server/db";
 import { auth } from "@/auth";
 import { ButtonForm } from "./ButtonForm";
+import { redirect } from "next/navigation";
 
 const Likes = async ({ userId }: { userId: number }) => {
   const users = await auth();
@@ -13,13 +14,15 @@ const Likes = async ({ userId }: { userId: number }) => {
   });
   const like = data.map((item) => item.email);
   const isLike = like.includes(email);
-  console.log(isLike);
   const updatePostLikes = likePost.bind(null, userId, isLike);
 
   const onSumbit = async () => {
     "use server";
     const data = await updatePostLikes();
-    console.log(data);
+
+    if (data.success) {
+      redirect("/api/auth/signin");
+    }
   };
 
   return (

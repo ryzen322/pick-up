@@ -3,6 +3,7 @@
 import { auth } from "@/auth";
 import { db } from "@/server/db";
 import { likes } from "@/server/schema";
+
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
@@ -18,6 +19,7 @@ export const likePost = async (userId: number, like: boolean) => {
   if (!users) {
     return {
       message: `Please Login First`,
+      success: true,
     };
   }
   try {
@@ -26,20 +28,22 @@ export const likePost = async (userId: number, like: boolean) => {
       revalidatePath("/");
       return {
         message: "succesfully unlike",
+        success: false,
       };
     }
-    const added = await db
+    await db
       .insert(likes)
       .values({ name, email, image, likesId: userId })
       .returning();
     revalidatePath("/");
     return {
       message: "succesfully likes",
-      added,
+      success: false,
     };
   } catch (error) {
     return {
       message: "Database Error: Failed to Delete Invoice",
+      success: true,
       error,
     };
   }
