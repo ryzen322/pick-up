@@ -70,7 +70,7 @@ function PostForm({ className }: React.ComponentProps<"form">) {
                 />
               </svg>
             </div>
-            <div className=" h-[57px] w-[2.5px] bg-stone-400/85 "></div>
+            <div className=" h-[80px] w-[2.5px] bg-stone-400/85 "></div>
 
             <div className=" h-4 w-4 bg-stone-400/85  rounded-full shrink-0"></div>
           </div>
@@ -79,13 +79,13 @@ function PostForm({ className }: React.ComponentProps<"form">) {
               control={form.control}
               name="title"
               render={({ field }) => (
-                <FormItem className=" space-y-0">
+                <FormItem className=" space-y-1">
                   <FormLabel className=" text-base">Thinking?</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="What's new?"
                       {...field}
-                      className=" h-6 px-0 focus-visible:ring-transparent outline-none focus-visible:ring-white placeholder:text-xs border relative text-xs "
+                      className=" px-0 focus-visible:ring-transparent outline-none focus-visible:ring-white placeholder:text-sm border relative text-sm border-white"
                     />
                   </FormControl>
                   <FormMessage />
@@ -97,11 +97,11 @@ function PostForm({ className }: React.ComponentProps<"form">) {
               name="content"
               render={({ field }) => (
                 <FormItem className=" mt-2">
-                  <FormLabel>Threads</FormLabel>
+                  <FormLabel className=" text-base">Threads</FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="Tell us a little bit about yourself"
-                      className="resize-none focus-visible:ring-transparent placeholder:text-xs border border-white text-xs"
+                      className="resize-none focus-visible:ring-transparent placeholder:text-sm border border-white text-sm"
                       {...field}
                     />
                   </FormControl>
@@ -110,7 +110,7 @@ function PostForm({ className }: React.ComponentProps<"form">) {
               )}
             />
 
-            <div className=" mt-2 flex justify-between items-center">
+            <div className=" mt-2 flex justify-between items-center pr-4">
               <p className=" text-xs text-stone-400 font-medium">
                 Your followers can reply & quote
               </p>
