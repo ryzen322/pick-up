@@ -12,6 +12,8 @@ export const createPost = async (post: FormSchemaType) => {
   const name = users?.user?.name as string;
   const image = users?.user?.image as string;
 
+  console.log(post);
+
   if (!users) {
     return {
       message: `Please Login First`,

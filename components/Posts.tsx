@@ -43,7 +43,7 @@ const Posts = (props: InsterPost) => {
         <div className=" text-xs mt-1">{content}</div>
         {/* end title */}
         <div className=" w-full flex items-center gap-6 py-2">
-          <Likes />
+          <Likes userId={id!} />
           <Suspense fallback={<p>loading....</p>}>
             <Comments id={id!} />
           </Suspense>
