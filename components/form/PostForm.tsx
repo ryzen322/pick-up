@@ -85,7 +85,7 @@ function PostForm({ className }: React.ComponentProps<"form">) {
                     <Input
                       placeholder="What's new?"
                       {...field}
-                      className=" px-0 focus-visible:ring-transparent outline-none focus-visible:ring-white placeholder:text-sm border relative text-sm border-white"
+                      className=" px-0 focus-visible:ring-transparent outline-none focus-visible:ring-white  border relative  border-white"
                     />
                   </FormControl>
                   <FormMessage />
@@ -101,7 +101,7 @@ function PostForm({ className }: React.ComponentProps<"form">) {
                   <FormControl>
                     <Textarea
                       placeholder="Tell us a little bit about yourself"
-                      className="resize-none focus-visible:ring-transparent placeholder:text-sm border border-white text-sm"
+                      className="resize-none focus-visible:ring-transparent  border border-white "
                       {...field}
                     />
                   </FormControl>
