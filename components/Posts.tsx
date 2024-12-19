@@ -9,14 +9,14 @@ import AvatarProfile from "./AvatarProfile";
 import { PopoverDemo } from "./form/Pop-over";
 
 const Posts = (props: InsterPost) => {
-  const { name, title, createdAt, id, content } = props;
+  const { name, title, createdAt, id, content, image } = props;
 
   const date = formatDistanceToNow(createdAt!, { addSuffix: true });
 
   return (
-    <li className=" w-full flex gap-2 border-b border-stone-500/50 px-3 p-5">
-      <div className=" h-9 w-9 shrink-0 rounded-full cursor-pointer overflow-hidden">
-        <AvatarProfile />
+    <li className=" w-full flex gap-2 border-b border-stone-500/50 px-3 py-5">
+      <div className=" h-9 w-9 shrink-0 rounded-full cursor-pointer overflow-hidden mt-1">
+        <AvatarProfile name={name} image={image!} />
       </div>
       <div className=" flex flex-col w-full">
         <div className=" flex gap-2 w-full items-center">
@@ -37,10 +37,10 @@ const Posts = (props: InsterPost) => {
           </div>
         </div>
         {/* title */}
-        <p className=" text-[14px] leading-5 max-w-[24rem] sm:text-[15px]">
+        <p className=" text-[15px] leading-5 max-w-[24rem] sm:text-[15px]">
           {title}
         </p>
-        <div className="">{content}</div>
+        <div className=" text-sm mt-3">{content}</div>
         {/* end title */}
         <div className=" w-full flex items-center gap-6 py-2 mt-3">
           <Likes />

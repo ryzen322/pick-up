@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -36,10 +35,7 @@ export function DrawerDialogDemo() {
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Create Post</DialogTitle>
-            <DialogDescription>
-              Make changes to your profile here. Click save when youre done.
-            </DialogDescription>
+            <DialogTitle className=" text-sm">Create Post</DialogTitle>
           </DialogHeader>
           <PostForm />
         </DialogContent>
