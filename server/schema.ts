@@ -72,7 +72,8 @@ export const likes = pgTable("likes", {
     .references(() => posts.id, { onDelete: "cascade" }) // Foreign key reference to `tweet` table's `id`
     .notNull(),
   name: text("name").notNull(),
-  email: text("email").notNull().unique(),
+  email: text("email").notNull(),
+  image: text("image").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow(),
 });

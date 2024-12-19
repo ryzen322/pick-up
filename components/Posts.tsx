@@ -1,4 +1,3 @@
-import React, { Suspense } from "react";
 import Likes from "./form/Likes";
 import Comments from "./form/Comments";
 import Retweet from "./form/Retweet";
@@ -42,11 +41,9 @@ const Posts = (props: InsterPost) => {
         </p>
         <div className=" text-xs mt-1">{content}</div>
         {/* end title */}
-        <div className=" w-full flex items-center gap-6 py-2">
+        <div className=" w-full grid grid-cols-4 items-center gap-6 py-2 max-w-[15rem]">
           <Likes userId={id!} />
-          <Suspense fallback={<p>loading....</p>}>
-            <Comments id={id!} />
-          </Suspense>
+          <Comments id={id!} />
           <Retweet />
           <Send />
         </div>

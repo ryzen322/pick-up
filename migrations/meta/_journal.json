@@ -43,6 +43,20 @@
       "when": 1734596223624,
       "tag": "0005_lying_vindicator",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1734598574930,
+      "tag": "0006_panoramic_reaper",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1734600949443,
+      "tag": "0007_gigantic_wild_pack",
+      "breakpoints": true
     }
   ]
 }
