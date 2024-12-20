@@ -17,8 +17,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createPost } from "@/actions/create-post";
 import { Textarea } from "../ui/textarea";
 import { toast } from "sonner";
+import { useQueryClient } from "@tanstack/react-query";
 
 function PostForm({ className }: React.ComponentProps<"form">) {
+  const queryClient = useQueryClient();
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -31,6 +33,7 @@ function PostForm({ className }: React.ComponentProps<"form">) {
     try {
       const post = await createPost(form.getValues());
       if (post.succes) {
+        queryClient.invalidateQueries({ queryKey: ["posts"] });
         toast(`${post.message}`, {
           description: `title: ${post.title}`,
           action: {

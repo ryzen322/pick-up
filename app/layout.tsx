@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "@/components/navigation/Navigation";
 import Container from "@/components/Container";
 import { Toaster } from "sonner";
+import { Providers } from "./Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +35,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navigation />
-        <Container>{children}</Container>
+        <Providers>
+          <Container>{children}</Container>
+        </Providers>
         <Toaster />
       </body>
     </html>

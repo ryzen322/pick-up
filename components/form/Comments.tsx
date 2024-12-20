@@ -1,12 +1,8 @@
 import React from "react";
 import Svg from "../svg/svg";
 
-import { getCacheComments } from "@/server/queries";
-
-const Comments = async ({ id }: { id: number }) => {
-  // comments.id === id
-  // const total = getCacheComments(id);
-
+const Comments = ({ id }: { id: number }) => {
+  console.log(id);
   return (
     <div className=" flex items-center gap-1 cursor-pointer">
       <Svg

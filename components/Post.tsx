@@ -1,15 +1,26 @@
-import React from "react";
+"use client";
+
+import { usePost } from "@/server/api/queries";
 import Posts from "./Posts";
-import { getCachedPosts } from "@/server/queries";
 
-const Post = async () => {
-  const posts = await getCachedPosts();
+const Post = () => {
+  const { data, status } = usePost();
 
-  console.log("revalidate");
+  if (status === "pending") {
+    return <p className=" mx-auto animate-spin">Loading</p>;
+  }
+
+  if (status === "error") {
+    return (
+      <p className=" text-center text-destructive">
+        An error occured while loading posts.
+      </p>
+    );
+  }
 
   return (
     <ul className=" w-full flex flex-col mb-10">
-      {posts.map((post) => (
+      {data?.map((post) => (
         <Posts key={post.id} {...post} />
       ))}
     </ul>

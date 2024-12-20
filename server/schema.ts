@@ -97,3 +97,4 @@ export const likesRelations = relations(likes, ({ one }) => ({
 }));
 
 export type InsterPost = typeof posts.$inferInsert;
+export type PostsType = typeof posts.$inferSelect;
