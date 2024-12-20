@@ -5,6 +5,8 @@ import { getCachedPosts } from "@/server/queries";
 const Post = async () => {
   const posts = await getCachedPosts();
 
+  console.log("revalidate");
+
   return (
     <ul className=" w-full flex flex-col mb-10">
       {posts.map((post) => (

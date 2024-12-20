@@ -3,13 +3,13 @@
 import { auth } from "@/auth";
 import { db } from "@/server/db";
 import { likes } from "@/server/schema";
-import { revalidateTag } from "next/cache";
+import { eq } from "drizzle-orm";
 
-export const likePost = async (userId: number) => {
+import { revalidatePath } from "next/cache";
+
+export const unlikePost = async (userId: number) => {
   const users = await auth();
-  const email = users?.user?.email as string;
-  const name = users?.user?.name as string;
-  const image = users?.user?.image as string;
+  console.log("hello");
 
   if (!users) {
     return {
@@ -18,13 +18,10 @@ export const likePost = async (userId: number) => {
     };
   }
   try {
-    await db
-      .insert(likes)
-      .values({ name, email, image, likesId: userId })
-      .returning();
-    revalidateTag("likes");
+    await db.delete(likes).where(eq(likes.id, userId));
+    revalidatePath("/");
     return {
-      message: "succesfully likes",
+      message: "succesfully unlike",
       success: false,
     };
   } catch (error) {

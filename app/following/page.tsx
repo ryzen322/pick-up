@@ -1,5 +1,7 @@
 import ActiveLink from "@/components/ActiveLink";
 
+export const revalidate = 3600;
+
 export default function Home() {
   return (
     <section className=" flex flex-col w-full">

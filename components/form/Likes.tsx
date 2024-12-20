@@ -3,8 +3,8 @@ import Svg from "../svg/svg";
 import { likePost } from "@/actions/like-post";
 import { auth } from "@/auth";
 import { ButtonForm } from "./ButtonForm";
-import { redirect } from "next/navigation";
 import { getCascheLikes } from "@/server/queries";
+import { unlikePost } from "@/actions/unlike-post";
 
 const Likes = async ({ userId }: { userId: number }) => {
   const users = await auth();
@@ -12,14 +12,17 @@ const Likes = async ({ userId }: { userId: number }) => {
   const data = await getCascheLikes(userId);
   const like = data.map((item) => item.email);
   const isLike = like.includes(email);
-  const updatePostLikes = likePost.bind(null, userId, isLike);
+  const liked = data.find((item) => item.email);
+  const updatePostLikes = likePost.bind(null, userId);
 
   const onSumbit = async () => {
     "use server";
-    const data = await updatePostLikes();
 
-    if (data.success) {
-      redirect("/api/auth/signin");
+    if (liked) {
+      await unlikePost(liked.id);
+    }
+    if (liked === undefined) {
+      await updatePostLikes();
     }
   };
 

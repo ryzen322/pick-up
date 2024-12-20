@@ -23,7 +23,7 @@ export const getCascheLikes = unstable_cache(
       where: (likes, { eq }) => eq(likes.likesId, userId),
     });
   },
-  ["likes"],
+  [`likes`],
   { revalidate: 3600 * 60, tags: ["likes"] }
 );
 
