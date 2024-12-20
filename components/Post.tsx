@@ -1,14 +1,9 @@
 import React from "react";
 import Posts from "./Posts";
-import { db } from "@/server/db";
+import { getCachedPosts } from "@/server/queries";
 
 const Post = async () => {
-  const posts = await db.query.posts.findMany({
-    with: {
-      likes: true,
-    },
-    orderBy: (posts, { desc }) => [desc(posts.createdAt)],
-  });
+  const posts = await getCachedPosts();
 
   return (
     <ul className=" w-full flex flex-col mb-10">

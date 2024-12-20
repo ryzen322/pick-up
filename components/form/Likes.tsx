@@ -1,17 +1,15 @@
 import React from "react";
 import Svg from "../svg/svg";
 import { likePost } from "@/actions/like-post";
-import { db } from "@/server/db";
 import { auth } from "@/auth";
 import { ButtonForm } from "./ButtonForm";
 import { redirect } from "next/navigation";
+import { getCascheLikes } from "@/server/queries";
 
 const Likes = async ({ userId }: { userId: number }) => {
   const users = await auth();
   const email = users?.user?.email as string;
-  const data = await db.query.likes.findMany({
-    where: (likes, { eq }) => eq(likes.likesId, userId),
-  });
+  const data = await getCascheLikes(userId);
   const like = data.map((item) => item.email);
   const isLike = like.includes(email);
   const updatePostLikes = likePost.bind(null, userId, isLike);

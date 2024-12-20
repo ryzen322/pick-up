@@ -5,7 +5,7 @@ import { db } from "@/server/db";
 import { likes } from "@/server/schema";
 
 import { eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export const likePost = async (userId: number, like: boolean) => {
   const users = await auth();
@@ -35,7 +35,7 @@ export const likePost = async (userId: number, like: boolean) => {
       .insert(likes)
       .values({ name, email, image, likesId: userId })
       .returning();
-    revalidatePath("/");
+    revalidateTag("likes");
     return {
       message: "succesfully likes",
       success: false,

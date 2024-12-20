@@ -9,8 +9,6 @@ interface ButtonType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const ButtonForm: React.FC<ButtonType> = ({ children, ...props }) => {
   const status = useFormStatus();
 
-  console.log(status.pending);
-
   return (
     <button {...props} disabled={status.pending}>
       {children}

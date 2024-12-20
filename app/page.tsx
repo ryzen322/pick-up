@@ -1,6 +1,7 @@
 import ActiveLink from "@/components/ActiveLink";
 import PostDialog from "@/components/form/PostDialog";
 import Post from "@/components/Post";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -22,7 +23,9 @@ export default function Home() {
         </ActiveLink>
       </div>
       {/* fyp post */}
-      <Post />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Post />
+      </Suspense>
       {/* end */}
     </section>
   );

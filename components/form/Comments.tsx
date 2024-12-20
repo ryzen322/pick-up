@@ -1,15 +1,11 @@
 import React from "react";
 import Svg from "../svg/svg";
-import { db } from "@/server/db";
-import { count, eq } from "drizzle-orm";
-import { comments } from "@/server/schema";
+
+import { getCacheComments } from "@/server/queries";
 
 const Comments = async ({ id }: { id: number }) => {
   // comments.id === id
-  const [{ count: total }] = await db
-    .select({ count: count() })
-    .from(comments)
-    .where(eq(comments.CommentsId, id));
+  const total = getCacheComments(id);
 
   return (
     <div className=" flex items-center gap-1 cursor-pointer">

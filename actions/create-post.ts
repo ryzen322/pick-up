@@ -4,7 +4,7 @@ import { auth } from "@/auth";
 import { db } from "@/server/db";
 import { posts } from "@/server/schema";
 import { formSchema, FormSchemaType } from "@/types";
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 
 export const createPost = async (post: FormSchemaType) => {
   const users = await auth();
@@ -35,7 +35,7 @@ export const createPost = async (post: FormSchemaType) => {
       .values({ name, content, title, email, image })
       .returning();
 
-    revalidatePath("/");
+    revalidateTag("posts");
     return {
       message: "succes fully added new data ",
       succes: postFormValidation.success,
