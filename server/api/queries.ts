@@ -8,7 +8,7 @@ export const usePost = () => {
   const { data, status } = useQuery<PostsType[]>({
     queryKey: ["posts", "following"],
     queryFn: getPost,
-    staleTime: 800 * (60 * 1000), // 10 mins
+    gcTime: 1000 * 60 * 60 * 24, // 24 hours
   });
   return {
     data,
