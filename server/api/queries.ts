@@ -6,9 +6,9 @@ import { getPost } from ".";
 
 export const usePost = () => {
   const { data, status } = useQuery<PostsType[]>({
-    queryKey: ["posts", "following"],
+    queryKey: ["posts"],
     queryFn: getPost,
-    gcTime: 1000 * 60 * 60 * 24, // 24 hours
+    staleTime: 1000 * 60 * 120,
   });
   return {
     data,

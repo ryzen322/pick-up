@@ -12,8 +12,6 @@ export const createPost = async (post: FormSchemaType) => {
   const name = users?.user?.name as string;
   const image = users?.user?.image as string;
 
-  console.log(post);
-
   if (!users) {
     return {
       message: `Please Login First`,
@@ -30,16 +28,15 @@ export const createPost = async (post: FormSchemaType) => {
   try {
     const { content, title } = postFormValidation.data;
 
-    const postTitle = await db
+    const post = await db
       .insert(posts)
       .values({ name, content, title, email, image })
       .returning();
 
     revalidateTag("posts");
     return {
-      message: "succes fully added new data ",
-      succes: postFormValidation.success,
-      title: postTitle[0].title,
+      message: "Post Created Successfully",
+      post: post[0],
     };
   } catch (error) {
     return {

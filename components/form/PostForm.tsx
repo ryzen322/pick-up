@@ -14,13 +14,11 @@ import {
 import { useForm } from "react-hook-form";
 import { formSchema, FormSchemaType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createPost } from "@/actions/create-post";
 import { Textarea } from "../ui/textarea";
-import { toast } from "sonner";
-import { useQueryClient } from "@tanstack/react-query";
+import { usePostMutation } from "@/actions/mutation/usePostMutation";
 
 function PostForm({ className }: React.ComponentProps<"form">) {
-  const queryClient = useQueryClient();
+  const mutation = usePostMutation();
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -30,23 +28,7 @@ function PostForm({ className }: React.ComponentProps<"form">) {
   });
 
   async function onSubmit() {
-    try {
-      const post = await createPost(form.getValues());
-      if (post.succes) {
-        queryClient.invalidateQueries({ queryKey: ["posts"] });
-        toast(`${post.message}`, {
-          description: `title: ${post.title}`,
-          action: {
-            label: "Undo",
-            onClick: () => console.log("Undo"),
-          },
-        });
-
-        form.reset();
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    mutation.mutate(form.getValues());
   }
 
   return (

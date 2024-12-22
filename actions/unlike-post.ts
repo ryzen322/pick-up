@@ -9,7 +9,6 @@ import { revalidatePath } from "next/cache";
 
 export const unlikePost = async (userId: number) => {
   const users = await auth();
-  console.log("hello");
 
   if (!users) {
     return {

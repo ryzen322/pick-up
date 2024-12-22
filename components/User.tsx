@@ -114,9 +114,9 @@ export function UserSettings({ name, image }: { name: string; image: string }) {
           <span>API</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
+
         <DropdownMenuItem>
           <SignOut />
-          <span>Sign-out</span>
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>

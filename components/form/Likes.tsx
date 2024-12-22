@@ -3,9 +3,9 @@ import Svg from "../svg/svg";
 
 import { ButtonForm } from "./ButtonForm";
 
-const Likes = ({ userId }: { userId: number }) => {
+const Likes = () => {
   const isLike = true;
-  console.log(userId);
+
   // const users = await auth();
   // const email = users?.user?.email as string;
   // const data = await getCascheLikes(userId);
