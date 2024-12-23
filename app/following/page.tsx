@@ -2,7 +2,7 @@ import ActiveLink from "@/components/ActiveLink";
 import PostDialog from "@/components/form/PostDialog";
 import Post from "@/components/Post";
 
-export default function Home() {
+export default async function Home() {
   return (
     <section className=" flex flex-col w-full">
       <PostDialog />

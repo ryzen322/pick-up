@@ -9,7 +9,7 @@ import { PopoverDemo } from "./form/Pop-over";
 import { HoverAvatar } from "./HoverAvatar";
 
 const Posts = (props: InsterPost) => {
-  const { name, title, createdAt, content, image } = props;
+  const { name, title, createdAt, content, image, id } = props;
 
   const date = formatDistanceToNow(createdAt!, { addSuffix: true });
 
@@ -36,7 +36,7 @@ const Posts = (props: InsterPost) => {
         <div className=" text-xs mt-1">{content}</div>
         {/* end title */}
         <div className=" w-full grid grid-cols-4 items-center gap-6 py-2 max-w-[15rem]">
-          <Likes />
+          <Likes userId={id!} />
           <Comments />
           <Retweet />
           <Send />

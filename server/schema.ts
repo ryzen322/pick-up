@@ -98,3 +98,4 @@ export const likesRelations = relations(likes, ({ one }) => ({
 
 export type InsterPost = typeof posts.$inferInsert;
 export type PostsType = typeof posts.$inferSelect;
+export type LikesType = typeof likes.$inferSelect;

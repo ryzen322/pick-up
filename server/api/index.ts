@@ -11,3 +11,17 @@ export const getPost = async () => {
     throw Error(`Reqiest failed with status code ${error}`);
   }
 };
+
+export const getLikes = async (userId: number) => {
+  try {
+    const res = await fetch(`/api/likes/${userId}`);
+
+    if (!res.ok) {
+      throw Error(`Reqiest failed with status code ${res.status}`);
+    }
+
+    return res.json();
+  } catch (error) {
+    throw Error(`Reqiest failed with status code ${error}`);
+  }
+};
