@@ -1,20 +1,21 @@
 import { getCascheLikes } from "@/server/queries";
+import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
   { params }: { params: { userId: string } }
 ) {
-  const userId = (await params).userId as string;
+  const userId = params.userId;
   try {
     const likes = await getCascheLikes(Number(userId));
 
     if (likes.length === 0) {
-      return Response.json([]);
+      return NextResponse.json([]);
     }
 
-    return Response.json(likes);
+    return NextResponse.json(likes);
   } catch (error) {
-    return Response.json(
+    return NextResponse.json(
       { error: `Internal server error ${error}` },
       { status: 500 }
     );
