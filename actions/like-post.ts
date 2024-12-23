@@ -10,8 +10,6 @@ export const likePost = async (userId: number) => {
   const name = users?.user?.name as string;
   const image = users?.user?.image as string;
 
-  console.log("clicked");
-
   if (!users) {
     return {
       message: `Please Login First`,
