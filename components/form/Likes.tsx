@@ -10,6 +10,7 @@ const Likes = ({ userId }: { userId: number }) => {
   const mutation = useLikeMutation();
   const user = useSession();
   const { data, status } = useLikes(userId);
+  console.log(data);
   const like = data?.map((item) => item.email);
   const liked = isLiked(like, user.email);
   // const likes = data?.find((item) => item.email);
