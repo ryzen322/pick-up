@@ -14,7 +14,6 @@ export function useLikeMutation() {
       await queryClient.cancelQueries({ queryKey: quefilter });
 
       queryClient.setQueryData(quefilter, (old: LikesType[]) => {
-        if (!old) return [];
         return [...old, likes.like];
       });
 

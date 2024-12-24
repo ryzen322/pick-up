@@ -1,4 +1,4 @@
-import { getCascheLikes } from "@/server/queries";
+import { getLikes } from "@/server/queries";
 import { NextResponse } from "next/server";
 
 export async function GET(
@@ -8,8 +8,8 @@ export async function GET(
   const userId = (await params).userId;
 
   try {
-    const likes = await getCascheLikes(Number(userId));
-
+    const likes = await getLikes(Number(userId));
+    console.log(likes);
     return NextResponse.json(likes);
   } catch (error) {
     return NextResponse.json(

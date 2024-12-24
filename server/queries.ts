@@ -9,11 +9,11 @@ export const getCachedPosts = unstable_cache(async () => {
   });
 });
 
-export const getCascheLikes = unstable_cache(async (userId: number) => {
+export const getLikes = async (userId: number) => {
   return await db.query.likes.findMany({
     where: (likes, { eq }) => eq(likes.likesId, userId),
   });
-});
+};
 
 export const getCacheComments = unstable_cache(async (userId: number) => {
   const [{ count: total }] = await db
