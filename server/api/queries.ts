@@ -17,10 +17,11 @@ export const usePost = () => {
 };
 
 export const useLikes = (userId: number) => {
+  console.log(userId);
   const { data, status } = useQuery<LikesType[]>({
     queryKey: ["likes", userId],
     queryFn: () => getLikes(userId),
-    staleTime: 1000 * 60 * 120,
+    staleTime: 1000 * 60,
   });
   return {
     data,
