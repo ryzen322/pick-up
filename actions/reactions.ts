@@ -6,7 +6,11 @@ import { eq } from "drizzle-orm";
 
 export type RactionType = "like" | "dislike";
 
-export const reactions = async (userId: number, reacton: RactionType) => {
+export const reactions = async (
+  userId: number,
+  reacton: RactionType,
+  isliked?: number
+) => {
   const users = await auth();
   const email = users?.user?.email as string;
   const name = users?.user?.name as string;
@@ -20,10 +24,10 @@ export const reactions = async (userId: number, reacton: RactionType) => {
   }
 
   try {
-    if (reacton === "dislike") {
+    if (reacton === "dislike" && isliked) {
       const react = await db
         .delete(likes)
-        .where(eq(likes.likesId, userId))
+        .where(eq(likes.id, isliked))
         .returning();
 
       return {

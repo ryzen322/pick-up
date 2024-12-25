@@ -1,13 +1,17 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { LikesType } from "@/server/schema";
-import { RactionType, reactions } from "../reactions";
+import { reactions } from "../reactions";
 
-export function useLikeMutation(userId: number, reaction: RactionType) {
+export function useLikeMutation(
+  userId: number,
+  reaction: "like" | "dislike",
+  isliked?: number
+) {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: () => reactions(userId, reaction),
+    mutationFn: () => reactions(userId, reaction, isliked),
     onSuccess: async (likes) => {
       const userId = likes?.react?.likesId as number;
       const quefilter = ["likes", userId];
@@ -18,9 +22,8 @@ export function useLikeMutation(userId: number, reaction: RactionType) {
         if (reaction === "like") {
           return [...old, likes?.react];
         }
-
         if (reaction === "dislike") {
-          return old.filter((like) => like.likesId !== userId);
+          return old.filter((like) => like.id !== isliked);
         }
       });
 
