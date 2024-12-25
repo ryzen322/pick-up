@@ -5,6 +5,7 @@ import { useSession } from "@/app/SessionProvider";
 import { isLiked } from "@/hooks/isLiked";
 import { useLikeMutation } from "@/actions/mutation/useLikeMutation";
 import { redirect } from "next/navigation";
+import AnimatedCounter from "../ui/animate-number";
 
 const Likes = ({ userId }: { userId: number }) => {
   const user = useSession();
@@ -21,6 +22,10 @@ const Likes = ({ userId }: { userId: number }) => {
     mutation.mutate();
   };
 
+  const totalLikes = data?.length ? data.length : 0;
+
+  console.log(data);
+
   return (
     <ButtonForm
       type="submit"
@@ -33,7 +38,7 @@ const Likes = ({ userId }: { userId: number }) => {
         fill={`${liked ? "#fa383e" : ""}`}
       />
       <p className="text-xs items-center relative text-black/80  font-mono">
-        {data?.length}
+        <AnimatedCounter from={totalLikes} to={totalLikes} />
       </p>
     </ButtonForm>
   );

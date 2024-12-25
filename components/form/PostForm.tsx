@@ -16,8 +16,11 @@ import { formSchema, FormSchemaType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "../ui/textarea";
 import { usePostMutation } from "@/actions/mutation/usePostMutation";
+import { useSession } from "@/app/SessionProvider";
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
 function PostForm({ className }: React.ComponentProps<"form">) {
+  const { image, name } = useSession();
   const mutation = usePostMutation();
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -31,6 +34,25 @@ function PostForm({ className }: React.ComponentProps<"form">) {
     mutation.mutate(form.getValues());
   }
 
+  console.log(image);
+
+  const svg = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="stone"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke=""
+      className="size-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+      />
+    </svg>
+  );
+
   return (
     <Form {...form}>
       <form
@@ -39,21 +61,15 @@ function PostForm({ className }: React.ComponentProps<"form">) {
       >
         <div className=" flex gap-3">
           <div className=" flex flex-col items-center gap-1">
-            <div className=" h-8 w-8 bg-stone-400/85 ring-2 ring-stone-400 rounded-full shrink-0 flex justify-center items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="stone"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke=""
-                className="size-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                />
-              </svg>
+            <div className=" h-8 w-8 bg-stone-400/85 ring-2 ring-stone-400 rounded-full shrink-0 flex justify-center items-center overflow-hidden cursor-pointer">
+              {image ? (
+                svg
+              ) : (
+                <Avatar>
+                  <AvatarImage src={image} />
+                  <AvatarFallback>{svg}</AvatarFallback>
+                </Avatar>
+              )}
             </div>
             <div className=" h-[80px] w-[2.5px] bg-stone-400/85 "></div>
 
@@ -65,7 +81,9 @@ function PostForm({ className }: React.ComponentProps<"form">) {
               name="title"
               render={({ field }) => (
                 <FormItem className=" space-y-1">
-                  <FormLabel className=" text-base">Thinking?</FormLabel>
+                  <FormLabel className=" text-base">
+                    {name ? name : "Anonymous"}
+                  </FormLabel>
                   <FormControl>
                     <Input
                       placeholder="What's new?"
