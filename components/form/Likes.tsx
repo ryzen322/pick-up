@@ -7,39 +7,18 @@ import { useLikeMutation } from "@/actions/mutation/useLikeMutation";
 import { redirect } from "next/navigation";
 
 const Likes = ({ userId }: { userId: number }) => {
-  const mutation = useLikeMutation();
   const user = useSession();
-  const { data, status } = useLikes(userId);
-  console.log(data);
+  const { data } = useLikes(userId);
   const like = data?.map((item) => item.email);
   const liked = isLiked(like, user.email);
-  // const likes = data?.find((item) => item.email);
 
-  // console.log(likes);
-
-  if (status === "pending") {
-    return <p className=" mx-auto animate-spin">Loading</p>;
-  }
-
-  // const users = await auth();
-  // const email = users?.user?.email as string;
-  // const data = await getCascheLikes(userId);
-  // const isLike = like.includes(email);
-
-  // const updatePostLikes = likePost.bind(null, userId);
+  const mutation = useLikeMutation(userId, liked ? "dislike" : "like");
 
   const onSumbit = async () => {
-    // "use server";
-    // if (liked) {
-    //   await unlikePost(liked.id);
-    // }
-    // if (liked === undefined) {
-    //   await updatePostLikes();
-    // }
     if (Object.keys(user).length === 0) {
       redirect("api/auth/signin");
     }
-    mutation.mutate(userId);
+    mutation.mutate();
   };
 
   return (

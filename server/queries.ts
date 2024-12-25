@@ -3,12 +3,6 @@ import { db } from "./db";
 import { comments } from "./schema";
 import { count, eq } from "drizzle-orm";
 
-export const getCachedPosts = unstable_cache(async () => {
-  return await db.query.posts.findMany({
-    orderBy: (posts, { desc }) => [desc(posts.createdAt)],
-  });
-});
-
 export const getLikes = async (userId: number) => {
   return await db.query.likes.findMany({
     where: (likes, { eq }) => eq(likes.likesId, userId),

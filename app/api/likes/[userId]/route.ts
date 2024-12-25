@@ -9,7 +9,7 @@ export async function GET(
 
   try {
     const likes = await getLikes(Number(userId));
-    console.log(likes);
+
     return NextResponse.json(likes);
   } catch (error) {
     return NextResponse.json(

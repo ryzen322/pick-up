@@ -6,10 +6,6 @@ import Posts from "./Posts";
 const Post = () => {
   const { data, status } = usePost();
 
-  if (status === "pending") {
-    return <p className=" mx-auto animate-spin">Loading</p>;
-  }
-
   if (status === "error") {
     return (
       <p className=" text-center text-destructive">
