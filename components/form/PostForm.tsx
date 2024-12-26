@@ -34,8 +34,6 @@ function PostForm({ className }: React.ComponentProps<"form">) {
     mutation.mutate(form.getValues());
   }
 
-  console.log(image);
-
   const svg = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -63,12 +61,12 @@ function PostForm({ className }: React.ComponentProps<"form">) {
           <div className=" flex flex-col items-center gap-1">
             <div className=" h-8 w-8 bg-stone-400/85 ring-2 ring-stone-400 rounded-full shrink-0 flex justify-center items-center overflow-hidden cursor-pointer">
               {image ? (
-                svg
-              ) : (
                 <Avatar>
                   <AvatarImage src={image} />
                   <AvatarFallback>{svg}</AvatarFallback>
                 </Avatar>
+              ) : (
+                svg
               )}
             </div>
             <div className=" h-[80px] w-[2.5px] bg-stone-400/85 "></div>
