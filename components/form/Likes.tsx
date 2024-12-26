@@ -24,8 +24,6 @@ const Likes = ({ userId }: { userId: number }) => {
 
   const totalLikes = data?.length ? data.length : 0;
 
-  console.log(data);
-
   return (
     <ButtonForm
       type="submit"

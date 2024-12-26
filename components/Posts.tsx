@@ -37,7 +37,7 @@ const Posts = (props: InsterPost) => {
         {/* end title */}
         <div className=" w-full grid grid-cols-4 items-center gap-6 py-2 max-w-[15rem]">
           <Likes userId={id!} />
-          <Comments />
+          <Comments userId={id!} />
           <Retweet />
           <Send />
         </div>
