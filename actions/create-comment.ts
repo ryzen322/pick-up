@@ -2,22 +2,20 @@
 
 import { auth } from "@/auth";
 import { db } from "@/server/db";
-import { posts } from "@/server/schema";
-import { formSchema, FormSchemaType } from "@/types";
+import { comments } from "@/server/schema";
+import { CommentSchema, commentSchema } from "@/types";
 
-export const createPost = async (post: FormSchemaType) => {
+export const createComment = async (comment: CommentSchema) => {
   const users = await auth();
   const email = users?.user?.email as string;
   const name = users?.user?.name as string;
-  const image = users?.user?.image as string;
-
   if (!users) {
     return {
       message: `Please Login First`,
     };
   }
 
-  const postFormValidation = formSchema.safeParse(post);
+  const postFormValidation = commentSchema.safeParse(comment);
   if (!postFormValidation.success) {
     return {
       message: `Invalid Input `,
@@ -25,16 +23,16 @@ export const createPost = async (post: FormSchemaType) => {
   }
 
   try {
-    const { content, title } = postFormValidation.data;
+    const { comment, postId } = postFormValidation.data;
 
-    const post = await db
-      .insert(posts)
-      .values({ name, content, title, email, image })
+    const createdComment = await db
+      .insert(comments)
+      .values({ name, comment, email, CommentsId: postId })
       .returning();
 
     return {
-      message: "Post Created Successfully",
-      post: post[0],
+      message: "Comment Created Successfully",
+      comment: createdComment[0],
     };
   } catch (error) {
     return {

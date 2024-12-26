@@ -2,13 +2,13 @@ import Likes from "./form/Likes";
 import Comments from "./form/Comments";
 import Retweet from "./form/Retweet";
 import Send from "./form/Send";
-import { InsterPost } from "@/server/schema";
+import { PostsType } from "@/server/schema";
 import { formatDistanceToNow } from "date-fns";
 import AvatarProfile from "./AvatarProfile";
 import { PopoverDemo } from "./form/Pop-over";
 import { HoverAvatar } from "./HoverAvatar";
 
-const Posts = (props: InsterPost) => {
+const Posts = (props: PostsType) => {
   const { name, title, createdAt, content, image, id } = props;
 
   const date = formatDistanceToNow(createdAt!, { addSuffix: true });
@@ -37,7 +37,7 @@ const Posts = (props: InsterPost) => {
         {/* end title */}
         <div className=" w-full grid grid-cols-4 items-center gap-6 py-2 max-w-[15rem]">
           <Likes userId={id!} />
-          <Comments userId={id!} />
+          <Comments {...props} />
           <Retweet />
           <Send />
         </div>
