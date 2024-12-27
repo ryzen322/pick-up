@@ -54,7 +54,7 @@ export function CommentDrawer(props: CommentDrawerProps) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="outline">
+          <Button variant="outline" onClick={(e) => e.stopPropagation}>
             <div className=" flex items-center gap-1 cursor-pointer">
               <MessageCircle color="grey" />
               <p className="text-xs items-center relative text-black/80  font-mono">
@@ -63,7 +63,10 @@ export function CommentDrawer(props: CommentDrawerProps) {
             </div>
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[600px]">
+        <DialogContent
+          className="sm:max-w-[600px]"
+          onClick={(e) => e.stopPropagation}
+        >
           <DrawerHeader className=" flex gap-2 px-0">
             <div className=" flex-shrink-0 h-9 w-9 rounded-full flex items-center justify-center">
               {image ? (
@@ -93,8 +96,13 @@ export function CommentDrawer(props: CommentDrawerProps) {
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>
-        <Button variant="outline">
+      <DrawerTrigger asChild onClick={(e) => e.stopPropagation}>
+        <Button
+          variant="outline"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
           <div className=" flex items-center gap-1 cursor-pointer">
             <MessageCircle color="grey" />
             <p className="text-xs items-center relative text-black/80  font-mono">
@@ -103,7 +111,7 @@ export function CommentDrawer(props: CommentDrawerProps) {
           </div>
         </Button>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent onClick={(e) => e.stopPropagation}>
         <DrawerHeader className=" flex gap-2 ">
           <div className=" flex-shrink-0 h-9 w-9 rounded-full flex items-center justify-center overflow-hidden">
             {image ? (
