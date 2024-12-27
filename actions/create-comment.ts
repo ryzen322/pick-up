@@ -9,6 +9,7 @@ export const createComment = async (comment: CommentSchema) => {
   const users = await auth();
   const email = users?.user?.email as string;
   const name = users?.user?.name as string;
+  const image = users?.user?.image as string;
   if (!users) {
     return {
       message: `Please Login First`,
@@ -27,7 +28,7 @@ export const createComment = async (comment: CommentSchema) => {
 
     const createdComment = await db
       .insert(comments)
-      .values({ name, comment, email, CommentsId: postId })
+      .values({ name, comment, email, CommentsId: postId, image })
       .returning();
 
     return {
