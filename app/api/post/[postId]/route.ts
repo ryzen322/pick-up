@@ -11,7 +11,9 @@ export async function GET(
     const post = await db.query.posts.findFirst({
       where: (posts, { eq }) => eq(posts.id, Number(postId)),
       with: {
-        comments: true,
+        comments: {
+          orderBy: (posts, { desc }) => [desc(posts.createdAt)],
+        },
         likes: true,
       },
     });

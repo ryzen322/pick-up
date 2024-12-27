@@ -2,17 +2,17 @@ import { dateToString } from "@/lib/utils";
 import { CommentsType } from "@/server/schema";
 import { Heart, MessageCircle, Plus, RotateCcw, Send } from "lucide-react";
 import React from "react";
+import AvatarProfile from "./AvatarProfile";
 
 const Comments = (props: CommentsType) => {
-  const { name, createdAt, comment } = props;
-
+  const { name, createdAt, comment, image } = props;
   return (
-    <li className=" flex gap-2 border-b border-stone-500/50 py-3">
+    <li className=" flex gap-2 border-b border-stone-500/50 py-3 last:mb-10">
       <div className=" h-9 w-9 shrink-0 rounded-full flex items-center justify-center cursor-pointer mt-[7px] border  relative">
-        <div className=" h-full w-full relative rounded-full overflow-hidden bg-stone-600">
-          {/* <AvatarProfile name={name} image={image!} /> */}
+        <div className=" h-full w-full relative rounded-full overflow-hidden bg-stone-600 flex items-center justify-center ">
+          <AvatarProfile name={name} image={image!} />
         </div>
-        <div className=" h-4 w-4 absolute rounded-full right-0 bottom-[-4px] ring-1 ring-white bg-black flex items-center justify-center">
+        <div className=" h-4 w-4 absolute rounded-full right-0 bottom-[-4px] ring-2 ring-white bg-black flex items-center justify-center">
           <Plus color="#ffffff" />
         </div>
       </div>

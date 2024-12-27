@@ -7,7 +7,7 @@ export const PostComments = ({
   comments: CommentsType[] | undefined;
 }) => {
   return (
-    <ul className=" flex flex-col px-2 h-full overflow-y-scroll">
+    <ul className=" flex flex-col px-2 h-full ">
       {comments?.map((comment) => (
         <Comments key={comment.id} {...comment} />
       ))}

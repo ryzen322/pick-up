@@ -15,7 +15,6 @@ const Posts = (props: PostsType) => {
   const { name, title, createdAt, content, id, image } = props;
   const router = useRouter();
 
-  console.log(createdAt);
   return (
     <li
       className=" w-full flex gap-2 border-b border-stone-500/50 px-3 py-2 cursor-pointer  sm:py-3 sm:px-4"
