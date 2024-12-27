@@ -15,7 +15,8 @@ const Likes = ({ userId }: { userId: number }) => {
   const isliked = data?.find((item) => item.email === user.email)?.id;
   const mutation = useLikeMutation(userId, liked ? "dislike" : "like", isliked);
 
-  const onSumbit = async () => {
+  const onSumbit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     if (Object.keys(user).length === 0) {
       redirect("api/auth/signin");
     }

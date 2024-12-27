@@ -101,3 +101,4 @@ export type PostsType = typeof posts.$inferSelect;
 export type LikesType = typeof likes.$inferSelect;
 export type CommentsType = typeof comments.$inferSelect;
 export type insertComment = typeof users.$inferSelect;
+export type PostRelations = typeof postRelations.table;

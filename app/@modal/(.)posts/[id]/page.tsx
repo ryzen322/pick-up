@@ -1,8 +1,10 @@
+import PostSingle from "@/components/PostSingle";
+
 export default async function PhotoModal({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const photoId = (await params).id;
-  return <div>{photoId}</div>;
+  const postId = (await params).id;
+  return <PostSingle postId={Number(postId)} />;
 }

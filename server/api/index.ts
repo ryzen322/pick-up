@@ -39,3 +39,17 @@ export const getComments = async (userId: number) => {
     throw Error(`Reqiest failed with status code ${error}`);
   }
 };
+
+export const getPostById = async (postId: number) => {
+  try {
+    const res = await fetch(`/api/post/${postId}`);
+
+    if (!res.ok) {
+      throw Error(`Reqiest failed with status code ${res.status}`);
+    }
+
+    return res.json();
+  } catch (error) {
+    throw Error(`Reqiest failed with status code ${error}`);
+  }
+};
