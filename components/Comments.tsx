@@ -1,6 +1,6 @@
 import { dateToString } from "@/lib/utils";
 import { CommentsType } from "@/server/schema";
-import { Heart, MessageCircle, Plus, RotateCcw, Send } from "lucide-react";
+import { Heart, MessageCircle, Plus, Repeat2, Send } from "lucide-react";
 import React from "react";
 import AvatarProfile from "./AvatarProfile";
 import { Button } from "./ui/button";
@@ -44,7 +44,7 @@ const Comments = (props: CommentsType) => {
             variant={"link"}
             className=" flex items-center gap-1 cursor-pointer  h-5"
           >
-            <RotateCcw size={18} />
+            <Repeat2 size={18} />
             <p className=" text-sm">1k</p>
           </Button>
           <Button
