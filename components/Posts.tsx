@@ -43,7 +43,7 @@ const Posts = (props: PostsType) => {
         <p className=" text-xs leading-5 max-w-[24rem] sm:text-[13px] relative bottom-[2px]">
           {title}
         </p>
-        <div className=" text-xs mt-1">{content}</div>
+        <p className=" text-xs mt-1">{content}</p>
         {/* end title */}
         <div
           className=" w-full grid grid-cols-4 items-center gap-1 max-w-[13rem] mt-2"
