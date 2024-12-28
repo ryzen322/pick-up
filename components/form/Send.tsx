@@ -1,15 +1,21 @@
 import React from "react";
-import Svg from "../svg/svg";
+import { Button } from "../ui/button";
+import { SendIcon } from "lucide-react";
+import AnimatedCounter from "../ui/animate-number";
 
 const Send = () => {
+  const totalLikes = 32;
   return (
-    <div className=" flex items-center gap-1 cursor-pointer">
-      <Svg
-        size="size-5"
-        icon="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
-      />
-      <p className=" text-xs text-center">2</p>
-    </div>
+    <Button
+      type="submit"
+      variant={"ghost"}
+      className=" flex items-center gap-1 cursor-pointer text-left group h-7"
+    >
+      <SendIcon size={18} fill="white" stroke="black" strokeWidth={1.5} />
+      <p className="text-xs items-center relative text-black/80  font-mono  group-hover:no-underline">
+        <AnimatedCounter from={totalLikes} to={totalLikes} />
+      </p>
+    </Button>
   );
 };
 

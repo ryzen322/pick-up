@@ -3,6 +3,7 @@ import { CommentsType } from "@/server/schema";
 import { Heart, MessageCircle, Plus, RotateCcw, Send } from "lucide-react";
 import React from "react";
 import AvatarProfile from "./AvatarProfile";
+import { Button } from "./ui/button";
 
 const Comments = (props: CommentsType) => {
   const { name, createdAt, comment, image } = props;
@@ -25,22 +26,34 @@ const Comments = (props: CommentsType) => {
         </div>
         <p className=" text-[15px] font-normal">{comment}</p>
         <div className=" h-5 max-w-[13rem] mt-4 grid grid-cols-4 items-center gap-1">
-          <div className=" flex items-center gap-1 cursor-pointer">
+          <Button
+            variant={"link"}
+            className=" flex items-center gap-1 cursor-pointer h-5"
+          >
             <Heart size={18} />
-            <p className=" text-sm">1</p>
-          </div>
-          <div className=" flex items-center gap-1 cursor-pointer">
+            <p className=" text-sm">100</p>
+          </Button>
+          <Button
+            variant={"link"}
+            className=" flex items-center gap-1 cursor-pointer  h-5"
+          >
             <MessageCircle size={18} />
-            <p className=" text-sm">1</p>
-          </div>
-          <div className=" flex items-center gap-1 cursor-pointer">
+            <p className=" text-sm">32</p>
+          </Button>
+          <Button
+            variant={"link"}
+            className=" flex items-center gap-1 cursor-pointer  h-5"
+          >
             <RotateCcw size={18} />
-            <p className=" text-sm">1</p>
-          </div>
-          <div className=" flex items-center gap-1 cursor-pointer">
+            <p className=" text-sm">1k</p>
+          </Button>
+          <Button
+            variant={"link"}
+            className=" flex items-center gap-1 cursor-pointer  h-5"
+          >
             <Send size={18} />
-            <p className=" text-sm">1</p>
-          </div>
+            <p className=" text-sm">2k</p>
+          </Button>
         </div>
       </div>
     </li>

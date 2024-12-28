@@ -54,9 +54,19 @@ export function CommentDrawer(props: CommentDrawerProps) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="outline" onClick={(e) => e.stopPropagation}>
+          <Button
+            variant="ghost"
+            className=" flex items-center gap-1 cursor-pointer text-left group h-7"
+            onClick={(e) => e.stopPropagation}
+          >
             <div className=" flex items-center gap-1 cursor-pointer">
-              <MessageCircle color="grey" />
+              <MessageCircle
+                color="grey"
+                size={18}
+                fill="white"
+                stroke="black"
+                strokeWidth={1.8}
+              />
               <p className="text-xs items-center relative text-black/80  font-mono">
                 <AnimatedCounter from={totaComment} to={totaComment} />
               </p>
@@ -98,13 +108,18 @@ export function CommentDrawer(props: CommentDrawerProps) {
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild onClick={(e) => e.stopPropagation}>
         <Button
-          variant="outline"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
+          variant="ghost"
+          className=" flex items-center gap-1 cursor-pointer text-left group h-7"
+          onClick={(e) => e.stopPropagation}
         >
           <div className=" flex items-center gap-1 cursor-pointer">
-            <MessageCircle color="grey" />
+            <MessageCircle
+              color="grey"
+              size={18}
+              fill="white"
+              stroke="black"
+              strokeWidth={1.8}
+            />
             <p className="text-xs items-center relative text-black/80  font-mono">
               <AnimatedCounter from={totaComment} to={totaComment} />
             </p>

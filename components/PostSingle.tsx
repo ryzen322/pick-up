@@ -30,7 +30,7 @@ const PostSingle = ({ postId }: { postId: number }) => {
 
   return (
     <div className=" h-dvh w-full bg-black/70 fixed top-0 left-0 right-0 bottom-0 z-50 flex items-center justify-center overflow-hidden">
-      <div className=" w-full h-full bg-white flex flex-col gap-1 py-2 px-1 sm:rounded-lg sm:w-[80%] sm:h-[80%] md:w-[70%] lg:w-[50%] xl:w-[45%] 2xl:w-[35%]">
+      <div className=" w-full h-full bg-white flex flex-col gap-1 py-2 px-1 relative sm:rounded-lg sm:w-[80%] sm:h-[80%] md:w-[70%] lg:w-[50%] xl:w-[45%] 2xl:w-[35%]">
         <PostHeader />
         <Posts {...post} />
         <div className=" flex items-center justify-between py-3 p-2 border-b border-stone-500/50">

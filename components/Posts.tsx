@@ -46,7 +46,7 @@ const Posts = (props: PostsType) => {
         <div className=" text-xs mt-1">{content}</div>
         {/* end title */}
         <div
-          className=" w-full grid grid-cols-4 items-center gap-6 py-2 max-w-[13rem] "
+          className=" w-full grid grid-cols-4 items-center gap-1 max-w-[13rem] mt-2"
           onClick={(e) => {
             e.stopPropagation();
           }}
