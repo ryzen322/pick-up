@@ -1,4 +1,4 @@
-export const isLiked = (
+export const isExistTheUser = (
   data: string[] | undefined,
   email: string | undefined
 ): boolean => {

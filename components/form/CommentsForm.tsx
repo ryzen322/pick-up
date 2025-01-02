@@ -99,7 +99,7 @@ export function CommentsForm({
             )}
           />
         </div>
-        <Button type="submit">Save changes</Button>
+        <Button type="submit">Comment</Button>
       </form>
     </Form>
   );
