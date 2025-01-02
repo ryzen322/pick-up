@@ -53,7 +53,7 @@ const Posts = (props: PostsType) => {
         >
           <Likes userId={id!} />
           <Comments {...props} />
-          <Retweet />
+          <Retweet userId={id} />
           <Send />
         </div>
       </div>

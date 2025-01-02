@@ -53,3 +53,17 @@ export const getPostById = async (postId: number) => {
     throw Error(`Reqiest failed with status code ${error}`);
   }
 };
+
+export const getRetweet = async (userId: number) => {
+  try {
+    const res = await fetch(`/api/retweet/${userId}`);
+
+    if (!res.ok) {
+      throw Error(`Reqiest failed with status code ${res.status}`);
+    }
+
+    return res.json();
+  } catch (error) {
+    throw Error(`Reqiest failed with status code ${error}`);
+  }
+};

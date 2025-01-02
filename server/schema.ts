@@ -123,3 +123,4 @@ export type CommentsType = typeof comments.$inferSelect;
 export type insertComment = typeof comments.$inferInsert;
 export type PostRelations = typeof postRelations.table;
 export type InsertLike = typeof likes.$inferInsert;
+export type InsertRetweet = typeof retweet.$inferInsert;
