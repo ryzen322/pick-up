@@ -5,6 +5,7 @@ async function main() {
   await seeds.posts(db);
   await seeds.comment(db);
   await seeds.likes(db);
+  await seeds.retweet(db);
 }
 
 main();

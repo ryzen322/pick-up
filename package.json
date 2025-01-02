@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "db:studio": "drizzle-kit studio",
-    "db:generate": "drizzle-kit generate:pg && drizzle-kit migrate:pg",
-    "db:push": "drizzle-kit push:pg",
+    "db:generate": "drizzle-kit generate && drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
     "db:seed": "tsx db/seed.ts"
   },
   "dependencies": {

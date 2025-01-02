@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { LikesType, PostsType } from "../schema";
-import { getComments, getLikes, getPost, getPostById } from ".";
+import { getComments, getLikes, getPost, getPostById, getRetweet } from ".";
 import { PostWithCommentsLikes } from "@/types";
 
 export const usePost = () => {
@@ -33,6 +33,18 @@ export const useComments = (userId: number) => {
   const { data, status } = useQuery<LikesType[]>({
     queryKey: ["comments", userId],
     queryFn: () => getComments(userId),
+    staleTime: 1000 * 60 * 120,
+  });
+  return {
+    data,
+    status,
+  };
+};
+
+export const useRetweet = (userId: number) => {
+  const { data, status } = useQuery<LikesType[]>({
+    queryKey: ["retweet", userId],
+    queryFn: () => getRetweet(userId),
     staleTime: 1000 * 60 * 120,
   });
   return {

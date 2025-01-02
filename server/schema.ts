@@ -78,10 +78,29 @@ export const likes = pgTable("likes", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow(),
 });
+export const retweet = pgTable("retweet", {
+  id: serial("id").primaryKey().notNull(),
+  retweetId: serial("retweetId")
+    .references(() => posts.id, { onDelete: "cascade" }) // Foreign key reference to `tweet` table's `id`
+    .notNull(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  image: text("image").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow(),
+});
 
 export const postRelations = relations(posts, ({ many }) => ({
   comments: many(comments),
   likes: many(likes),
+  retweet: many(retweet),
+}));
+
+export const retweetRelations = relations(retweet, ({ one }) => ({
+  author: one(posts, {
+    fields: [retweet.retweetId],
+    references: [posts.id],
+  }),
 }));
 
 export const commentsRelations = relations(comments, ({ one }) => ({
@@ -104,3 +123,4 @@ export type CommentsType = typeof comments.$inferSelect;
 export type insertComment = typeof comments.$inferInsert;
 export type PostRelations = typeof postRelations.table;
 export type InsertLike = typeof likes.$inferInsert;
+export type InsertRetweet = typeof retweet.$inferInsert;
