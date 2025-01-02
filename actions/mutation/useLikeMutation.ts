@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { LikesType } from "@/server/schema";
-import { reactions } from "../reactions";
+import { LikesType, RetweetType } from "@/server/schema";
+import { RactionType, reactions } from "../reactions";
 
 export function useLikeMutation(
   userId: number,
-  reaction: "like" | "dislike",
+  reaction: RactionType,
   isliked?: number
 ) {
   const queryClient = useQueryClient();
@@ -13,21 +13,41 @@ export function useLikeMutation(
   const mutation = useMutation({
     mutationFn: () => reactions(userId, reaction, isliked),
     onSuccess: async (likes) => {
-      const userId = likes?.react?.likesId as number;
-      const quefilter = ["likes", userId];
+      if (likes?.revalidateQuery === "likes") {
+        const userId = likes?.reactonId;
+        const quefilter = ["likes", userId];
 
-      await queryClient.cancelQueries({ queryKey: quefilter });
+        await queryClient.cancelQueries({ queryKey: quefilter });
 
-      queryClient.setQueryData(quefilter, (old: LikesType[]) => {
-        if (reaction === "like") {
-          return [...old, likes?.react];
-        }
-        if (reaction === "dislike") {
-          return old.filter((like) => like.id !== isliked);
-        }
-      });
+        queryClient.setQueryData(quefilter, (old: LikesType[]) => {
+          if (reaction === "like") {
+            return [...old, likes?.react];
+          }
+          if (reaction === "dislike") {
+            return old.filter((like) => like.id !== isliked);
+          }
+        });
 
-      queryClient.invalidateQueries({ queryKey: quefilter });
+        queryClient.invalidateQueries({ queryKey: quefilter });
+      }
+
+      if (likes?.revalidateQuery === "retweet") {
+        const userId = likes?.reactonId;
+        const quefilter = ["retweet", userId];
+
+        await queryClient.cancelQueries({ queryKey: quefilter });
+
+        queryClient.setQueryData(quefilter, (old: RetweetType[]) => {
+          if (reaction === "retweets") {
+            return [...old, likes?.react];
+          }
+          if (reaction === "unretweets") {
+            return old.filter((like) => like.id !== isliked);
+          }
+        });
+
+        queryClient.invalidateQueries({ queryKey: quefilter });
+      }
     },
   });
 

@@ -1,10 +1,10 @@
 "use server";
 import { auth } from "@/auth";
 import { db } from "@/server/db";
-import { likes } from "@/server/schema";
+import { likes, retweet } from "@/server/schema";
 import { eq } from "drizzle-orm";
 
-export type RactionType = "like" | "dislike";
+export type RactionType = "like" | "dislike" | "retweets" | "unretweets";
 
 export const reactions = async (
   userId: number,
@@ -34,6 +34,8 @@ export const reactions = async (
         message: "succesfully likes",
         success: false,
         react: react[0],
+        reactonId: react[0].likesId,
+        revalidateQuery: "likes",
       };
     }
 
@@ -46,6 +48,35 @@ export const reactions = async (
         message: "succesfully likes",
         success: false,
         react: react[0],
+        reactonId: react[0].likesId,
+        revalidateQuery: "likes",
+      };
+    }
+
+    if (reacton === "unretweets" && isliked) {
+      const react = await db
+        .delete(retweet)
+        .where(eq(retweet.id, isliked))
+        .returning();
+      return {
+        message: "succesfully unretweet",
+        success: false,
+        react: react[0],
+        reactonId: react[0].retweetId,
+        revalidateQuery: "retweet",
+      };
+    }
+    if (reacton === "retweets") {
+      const react = await db
+        .insert(retweet)
+        .values({ name, email, image, retweetId: userId })
+        .returning();
+      return {
+        message: "succesfully retweet",
+        success: false,
+        react: react[0],
+        reactonId: react[0].retweetId,
+        revalidateQuery: "retweet",
       };
     }
   } catch (error) {

@@ -1,6 +1,6 @@
 import { useLikes } from "@/server/api/queries";
 import { useSession } from "@/app/SessionProvider";
-import { isLiked } from "@/hooks/isLiked";
+import { isExistTheUser } from "@/hooks/isLiked";
 import { useLikeMutation } from "@/actions/mutation/useLikeMutation";
 import { redirect } from "next/navigation";
 import AnimatedCounter from "../ui/animate-number";
@@ -11,7 +11,7 @@ const Likes = ({ userId }: { userId: number }) => {
   const user = useSession();
   const { data } = useLikes(userId);
   const like = data?.map((item) => item.email);
-  const liked = isLiked(like, user.email);
+  const liked = isExistTheUser(like, user.email);
   const isliked = data?.find((item) => item.email === user.email)?.id;
   const mutation = useLikeMutation(userId, liked ? "dislike" : "like", isliked);
 
