@@ -3,7 +3,7 @@ import { NavLinks } from "./aside";
 
 const AsideMd = () => {
   return (
-    <div className="hidden sm:flex h-[91dvh] w-[5rem]  fixed  flex-col items-center justify-between p-2 z-40 bg-white">
+    <div className="hidden sm:flex h-[95dvh] w-[5rem]  fixed  flex-col items-center justify-between p-2 z-40 bg-white lg:w-[7rem]">
       <div className=""></div>
       <nav className=" w-full h-[35%] grid grid-row-5 gap-1 ">
         <NavLinks
