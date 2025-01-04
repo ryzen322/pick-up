@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import React from "react";
 import { DrawerDialogDemo } from "../PostDrawer";
+import { Button } from "../ui/button";
 
 const PostDialog = async () => {
   const user = await auth();
@@ -20,7 +21,9 @@ const PostDialog = async () => {
         className=" placeholder:text-sm placeholder:font-semibold placeholder:text-stone-400/85 outline-none"
       />
       <div className=" text-black ml-auto py-1 px-4 border border-stone-300 rounded-lg">
-        <DrawerDialogDemo />
+        <DrawerDialogDemo>
+          <Button variant="outline">Create Post</Button>
+        </DrawerDialogDemo>
       </div>
     </div>
   );

@@ -23,16 +23,14 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import PostForm from "./form/PostForm";
 import Svg from "./svg/svg";
 
-export function DrawerDialogDemo() {
+export function DrawerDialogDemo({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button variant="outline">Create Post</Button>
-        </DialogTrigger>
+        <DialogTrigger asChild>{children}</DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle className=" text-sm">Create Post</DialogTitle>

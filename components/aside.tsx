@@ -39,7 +39,7 @@ export const NavLinks = ({ route, icon }: { icon: string; route: string }) => {
       href={`${route}`}
       className=" rounded-md flex items-center justify-center hover:bg-sky-100 transition-all duration-200 "
     >
-      <Svg icon={icon} />
+      <Svg icon={icon} size="size-6" />
     </Link>
   );
 };
