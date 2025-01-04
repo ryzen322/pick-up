@@ -15,7 +15,7 @@ const Post = () => {
   }
 
   return (
-    <ul className=" w-full flex flex-col mb-10">
+    <ul className=" w-full flex flex-col overflow-y-scroll max-h-[84dvh] sm:max-h-[78.9dvh]">
       {data?.map((post) => (
         <Posts key={post.id} {...post} />
       ))}

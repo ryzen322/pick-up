@@ -8,7 +8,7 @@ import { Plus } from "lucide-react";
 
 const Container = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className=" mt-[3.75rem] flex ">
+    <main className="  ">
       <Aside />
       <AsideMd />
       <PostFeed>{children}</PostFeed>
