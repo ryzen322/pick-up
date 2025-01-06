@@ -1,4 +1,12 @@
 import { Button } from "@/components/ui/button";
+import {
+  Bookmark,
+  EyeOff,
+  Users,
+  Users2,
+  MessageCircleWarning,
+  Link,
+} from "lucide-react";
 
 import {
   Popover,
@@ -22,15 +30,54 @@ export function PopoverDemo() {
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-80">
-        <div className="grid gap-4">
-          <div className="space-y-2">
-            <h4 className="font-medium leading-none">Dimensions</h4>
-            <p className="text-sm text-muted-foreground">
-              Set the dimensions for the layer.
-            </p>
+      <PopoverContent className=" max-w-[15rem] ring-1 ring-stone-500/60 p-1">
+        <div className="flex flex-col gap-4">
+          <div className=" flex flex-col">
+            <Button
+              variant={"ghost"}
+              className=" flex items-center justify-between"
+            >
+              <p className=" font-semibold">Save</p>
+              <Bookmark />
+            </Button>
+            <Button
+              variant={"ghost"}
+              className=" flex items-center justify-between"
+            >
+              <p className=" font-semibold">Not Interested</p>
+              <EyeOff />
+            </Button>
           </div>
-          <div className="grid gap-1"></div>
+          <div className=" flex flex-col">
+            <Button
+              variant={"ghost"}
+              className=" flex items-center justify-between"
+            >
+              <p className=" font-semibold">Mute</p>
+              <Users />
+            </Button>
+            <Button
+              variant={"ghost"}
+              className=" flex items-center justify-between"
+            >
+              <p className=" font-semibold">Unfollow</p>
+              <Users2 />
+            </Button>
+            <Button
+              variant={"ghost"}
+              className=" flex items-center justify-between"
+            >
+              <p className=" font-semibold text-red-600">Report</p>
+              <MessageCircleWarning />
+            </Button>
+          </div>
+          <Button
+            variant={"ghost"}
+            className=" flex items-center justify-between"
+          >
+            <p className=" font-semibold">Copy Link</p>
+            <Link />
+          </Button>
         </div>
       </PopoverContent>
     </Popover>
