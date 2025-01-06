@@ -125,3 +125,5 @@ export type PostRelations = typeof postRelations.table;
 export type InsertLike = typeof likes.$inferInsert;
 export type InsertRetweet = typeof retweet.$inferInsert;
 export type RetweetType = typeof retweet.$inferSelect;
+export type IsertUser = typeof users.$inferInsert;
+export type SelectUser = typeof users.$inferSelect;

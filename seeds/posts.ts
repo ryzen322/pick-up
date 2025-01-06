@@ -1,20 +1,19 @@
-import { DB } from "@/server/db";
+import { db, DB } from "@/server/db";
 import { InsterPost, posts } from "@/server/schema";
 import { faker } from "@faker-js/faker";
 
 const mock = async () => {
-  const data: InsterPost[] = [];
-
-  for (let i = 0; i < 5; i++) {
-    data.push({
+  const users = await db.query.users.findMany();
+  const randomPosts = faker.helpers.arrayElements(users);
+  const data: InsterPost[] = randomPosts.map((user) => {
+    return {
       content: faker.lorem.sentence(),
       title: faker.lorem.sentence(),
-      name: faker.person.fullName(),
-      email: faker.internet.email(),
-      image: faker.image.avatar(),
-    });
-  }
-
+      name: user.name as string,
+      email: user.email as string,
+      image: user.image,
+    };
+  });
   return data;
 };
 
