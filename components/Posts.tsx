@@ -12,9 +12,8 @@ import { dateToString } from "@/lib/utils";
 import dynamic from "next/dynamic";
 
 const Posts = (props: PostsType) => {
-  const { name, title, createdAt, content, id, image, email, privacy } = props;
+  const { name, title, createdAt, content, id, image, email } = props;
   const router = useRouter();
-  console.log(privacy);
 
   return (
     <li

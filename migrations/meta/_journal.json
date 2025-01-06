@@ -85,6 +85,13 @@
       "when": 1736143907803,
       "tag": "0011_striped_baron_strucker",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1736150741032,
+      "tag": "0012_free_iron_fist",
+      "breakpoints": true
     }
   ]
 }

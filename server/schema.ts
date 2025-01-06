@@ -120,6 +120,14 @@ export const likesRelations = relations(likes, ({ one }) => ({
   }),
 }));
 
+export const following = pgTable("following", {
+  id: serial("id").primaryKey().notNull(),
+  name: text("name"),
+  email: text("email"),
+  image: text("image"),
+  myEmail: text("myEmail"),
+});
+
 export type InsterPost = typeof posts.$inferInsert;
 export type PostsType = typeof posts.$inferSelect;
 export type LikesType = typeof likes.$inferSelect;
