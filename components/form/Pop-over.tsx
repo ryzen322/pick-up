@@ -30,7 +30,7 @@ export function PopoverDemo() {
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className=" max-w-[15rem] ring-1 ring-stone-500/60 p-1">
+      <PopoverContent className=" max-w-[15rem] ">
         <div className="flex flex-col gap-4">
           <div className=" flex flex-col">
             <Button

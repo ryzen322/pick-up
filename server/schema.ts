@@ -5,9 +5,12 @@ import {
   primaryKey,
   integer,
   serial,
+  pgEnum,
 } from "drizzle-orm/pg-core";
 import type { AdapterAccountType } from "next-auth/adapters";
 import { relations } from "drizzle-orm";
+
+export const Privacy = pgEnum("roles", ["public", "followers"]);
 
 export const users = pgTable("user", {
   id: text("id")
@@ -50,6 +53,7 @@ export const posts = pgTable("posts", {
   name: text("name").notNull(),
   email: text("email").notNull(),
   image: text("image"),
+  privacy: Privacy("privacy").default("public"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow(),
 });
