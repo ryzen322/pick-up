@@ -127,3 +127,5 @@ export type InsertRetweet = typeof retweet.$inferInsert;
 export type RetweetType = typeof retweet.$inferSelect;
 export type IsertUser = typeof users.$inferInsert;
 export type SelectUser = typeof users.$inferSelect;
+export type IsertAccount = typeof accounts.$inferInsert;
+export type SelectAccount = typeof users.$inferSelect;

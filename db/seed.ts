@@ -3,6 +3,7 @@ import { db } from "@/server/db";
 
 async function main() {
   await seeds.users(db);
+  await seeds.accounts(db);
   await seeds.posts(db);
   await seeds.comment(db);
   await seeds.likes(db);
