@@ -12,7 +12,13 @@ export function HoverAvatar({ name }: { name: string }) {
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <Button variant="link" className=" max-w-fit  p-0">
+        <Button
+          variant="link"
+          className=" max-w-fit  p-0"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
           @{name}
         </Button>
       </HoverCardTrigger>
