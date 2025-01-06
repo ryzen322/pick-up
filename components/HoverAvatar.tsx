@@ -11,7 +11,7 @@ import {
 export function HoverAvatar({ name }: { name: string }) {
   return (
     <HoverCard>
-      <HoverCardTrigger asChild>
+      <HoverCardTrigger tabIndex={0}>
         <Button
           variant="link"
           className=" max-w-fit  p-0"
