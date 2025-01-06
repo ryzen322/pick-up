@@ -2,7 +2,14 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { LikesType, PostsType } from "../schema";
-import { getComments, getLikes, getPost, getPostById, getRetweet } from ".";
+import {
+  getComments,
+  getLikes,
+  getPost,
+  getPostById,
+  getRetweet,
+  getUser,
+} from ".";
 import { PostWithCommentsLikes } from "@/types";
 
 export const usePost = () => {
@@ -57,6 +64,18 @@ export const usePostById = (postId: number) => {
   const { data, status } = useQuery<PostWithCommentsLikes>({
     queryKey: ["post", postId],
     queryFn: () => getPostById(postId),
+    staleTime: 1000 * 60 * 120,
+  });
+  return {
+    data,
+    status,
+  };
+};
+
+export const useGetUser = (email: string) => {
+  const { data, status } = useQuery<PostWithCommentsLikes>({
+    queryKey: ["post", email],
+    queryFn: () => getUser(email),
     staleTime: 1000 * 60 * 120,
   });
   return {

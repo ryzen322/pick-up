@@ -9,10 +9,10 @@ import { PopoverDemo } from "./form/Pop-over";
 import { HoverAvatar } from "./HoverAvatar";
 import { useRouter } from "next/navigation";
 import { dateToString } from "@/lib/utils";
-import AvatarProfile from "./AvatarProfile";
+import dynamic from "next/dynamic";
 
 const Posts = (props: PostsType) => {
-  const { name, title, createdAt, content, id, image } = props;
+  const { name, title, createdAt, content, id, image, email } = props;
   const router = useRouter();
 
   return (
@@ -24,12 +24,12 @@ const Posts = (props: PostsType) => {
       }}
     >
       <div className=" h-9 w-9 shrink-0 rounded-full flex items-center justify-center cursor-pointer overflow-hidden mt-[7px] border border-black">
-        <AvatarProfile name={name} image={image!} />
+        <DynamicHeader name={name} image={image!} />
       </div>
       <div className=" flex flex-col w-full">
         <div className=" flex gap-2 w-full items-center">
           <h1 className=" font-medium text-[13px] cursor-pointer hover:underline">
-            <HoverAvatar name={name} />
+            <HoverAvatar email={email} />
           </h1>
           <p className="  text-[10px] text-stone-500 font-normal">
             {dateToString(createdAt)}
@@ -62,3 +62,7 @@ const Posts = (props: PostsType) => {
 };
 
 export default Posts;
+
+const DynamicHeader = dynamic(() => import("./AvatarProfile"), {
+  loading: () => <p>Loading...</p>,
+});

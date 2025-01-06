@@ -1,5 +1,5 @@
+"use client";
 import { CalendarDays } from "lucide-react";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -7,8 +7,11 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import { useGetUser } from "@/server/api/queries";
 
-export function HoverAvatar({ name }: { name: string }) {
+export function HoverAvatar({ email }: { email: string }) {
+  const { data } = useGetUser(email);
+
   return (
     <HoverCard>
       <HoverCardTrigger tabIndex={0}>
@@ -19,17 +22,17 @@ export function HoverAvatar({ name }: { name: string }) {
             e.stopPropagation();
           }}
         >
-          @{name}
+          @{data?.name}
         </Button>
       </HoverCardTrigger>
       <HoverCardContent className="w-80">
         <div className="flex justify-between space-x-4">
           <Avatar>
-            <AvatarImage src="https://github.com/vercel.png" />
+            <AvatarImage src={`${data ? data.image : undefined}`} />
             <AvatarFallback>VC</AvatarFallback>
           </Avatar>
           <div className="space-y-1">
-            <h4 className="text-sm font-semibold">@{name}</h4>
+            <h4 className="text-sm font-semibold">@{data?.name}</h4>
             <p className="text-sm">
               The React Framework – created and maintained by @vercel.
             </p>
