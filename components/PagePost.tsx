@@ -20,6 +20,7 @@ const PagePost = ({ id }: { id: string }) => {
     id: data?.id as number,
     email: data?.email as string,
     updatedAt: data?.updatedAt as Date,
+    privacy: "public",
   };
 
   return (
