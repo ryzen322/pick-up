@@ -20,6 +20,7 @@ const PostSingle = ({ postId }: { postId: number }) => {
     id: data?.id as number,
     email: data?.email as string,
     updatedAt: data?.updatedAt as Date,
+    privacy: "public",
   };
 
   if (status === "pending") {
