@@ -1,3 +1,5 @@
+"use client";
+import { useDeletePostMutation } from "@/actions/mutation/useDeletePostMutation";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,7 +13,12 @@ import {
 } from "@/components/ui/alert-dialog";
 import { MessageCircleWarning } from "lucide-react";
 
-const DeleteDialog = () => {
+const DeleteDialog = ({ userId }: { userId: number }) => {
+  const mutation = useDeletePostMutation();
+  const onSumbit = async () => {
+    mutation.mutate(userId);
+  };
+
   return (
     <AlertDialog>
       <AlertDialogTrigger
@@ -31,7 +38,7 @@ const DeleteDialog = () => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          <AlertDialogAction onClick={onSumbit}>Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

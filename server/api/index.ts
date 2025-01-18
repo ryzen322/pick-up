@@ -79,3 +79,15 @@ export const getUser = async (email: string) => {
     throw Error(`Reqiest failed with status code ${error}`);
   }
 };
+
+export const deletePost = async (userId: number) => {
+  try {
+    const res = await fetch(`/api/delete-post/${userId}`);
+    if (!res.ok) {
+      throw Error(`Reqiest failed with status code ${res.status}`);
+    }
+    return res.json();
+  } catch (error) {
+    throw Error(`Reqiest failed with status code ${error}`);
+  }
+};

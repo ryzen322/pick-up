@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Bookmark, EyeOff, Users, Users2, Link } from "lucide-react";
 
@@ -9,7 +10,7 @@ import {
 import Svg from "../svg/svg";
 import DeleteDialog from "../DeleteDialog";
 
-export function PopoverDemo() {
+export function PopoverDemo({ userId }: { userId: number }) {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -57,7 +58,7 @@ export function PopoverDemo() {
               <p className=" font-semibold">Unfollow</p>
               <Users2 />
             </Button>
-            <DeleteDialog />
+            <DeleteDialog userId={userId} />
           </div>
           <Button
             variant={"ghost"}

@@ -15,7 +15,7 @@ export async function GET(
       .where(eq(posts.id, Number(userId)))
       .returning();
 
-    return NextResponse.json(like);
+    return NextResponse.json(like[0]);
   } catch (error) {
     return NextResponse.json(
       { error: `Internal server error ${error}` },

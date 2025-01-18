@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { LikesType, PostsType } from "../schema";
 import {
+  deletePost,
   getComments,
   getLikes,
   getPost,
@@ -77,6 +78,17 @@ export const useGetUser = (email: string) => {
     queryKey: ["post", email],
     queryFn: () => getUser(email),
     staleTime: 1000 * 60 * 120,
+  });
+  return {
+    data,
+    status,
+  };
+};
+
+export const useDeletePost = (userId: number) => {
+  const { data, status } = useQuery<PostsType>({
+    queryKey: ["post", userId],
+    queryFn: () => deletePost(userId),
   });
   return {
     data,
