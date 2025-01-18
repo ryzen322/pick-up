@@ -1,12 +1,5 @@
 import { Button } from "@/components/ui/button";
-import {
-  Bookmark,
-  EyeOff,
-  Users,
-  Users2,
-  MessageCircleWarning,
-  Link,
-} from "lucide-react";
+import { Bookmark, EyeOff, Users, Users2, Link } from "lucide-react";
 
 import {
   Popover,
@@ -14,6 +7,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Svg from "../svg/svg";
+import DeleteDialog from "../DeleteDialog";
 
 export function PopoverDemo() {
   return (
@@ -58,18 +52,12 @@ export function PopoverDemo() {
             </Button>
             <Button
               variant={"ghost"}
-              className=" flex items-center justify-between"
+              className=" flex items-center justify-between "
             >
               <p className=" font-semibold">Unfollow</p>
               <Users2 />
             </Button>
-            <Button
-              variant={"ghost"}
-              className=" flex items-center justify-between"
-            >
-              <p className=" font-semibold text-red-600">Report</p>
-              <MessageCircleWarning />
-            </Button>
+            <DeleteDialog />
           </div>
           <Button
             variant={"ghost"}

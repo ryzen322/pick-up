@@ -35,7 +35,12 @@ const Posts = (props: PostsType) => {
             {dateToString(createdAt)}
           </p>
 
-          <div className=" ml-auto ">
+          <div
+            className=" ml-auto "
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
             <PopoverDemo />
           </div>
         </div>
