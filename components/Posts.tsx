@@ -41,7 +41,7 @@ const Posts = (props: PostsType) => {
               e.stopPropagation();
             }}
           >
-            <PopoverDemo userId={id} />
+            <PopoverDemo userId={id} email={email} />
           </div>
         </div>
         {/* title */}

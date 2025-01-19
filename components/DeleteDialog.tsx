@@ -25,8 +25,8 @@ const DeleteDialog = ({ userId }: { userId: number }) => {
         className=" flex items-center justify-between  rounded-md h-10 px-4 py-2 sm:h-9  sm:px-3 lg:h-11 lg:px-8"
         onClick={(e) => e.stopPropagation}
       >
-        <p className=" font-semibold text-red-600 text-sm pl-1">Delete</p>
-        <MessageCircleWarning size={"18px"} className=" mr-1" />
+        <p className=" font-semibold text-red-600 text-sm">Delete</p>
+        <MessageCircleWarning size={"18px"} />
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

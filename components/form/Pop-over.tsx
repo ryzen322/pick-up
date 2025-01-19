@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Bookmark, EyeOff, Users, Users2, Link } from "lucide-react";
+import { Bookmark, EyeOff, Users, Users2, Link, Flag } from "lucide-react";
 
 import {
   Popover,
@@ -9,8 +9,20 @@ import {
 } from "@/components/ui/popover";
 import Svg from "../svg/svg";
 import DeleteDialog from "../DeleteDialog";
+import { useSession } from "@/app/SessionProvider";
 
-export function PopoverDemo({ userId }: { userId: number }) {
+export function PopoverDemo({
+  userId,
+  email,
+}: {
+  userId: number;
+  email: string;
+}) {
+  const user = useSession();
+  console.log(user);
+
+  const deletePost = user.email === email;
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -58,7 +70,17 @@ export function PopoverDemo({ userId }: { userId: number }) {
               <p className=" font-semibold">Unfollow</p>
               <Users2 />
             </Button>
-            <DeleteDialog userId={userId} />
+            {deletePost ? (
+              <DeleteDialog userId={userId} />
+            ) : (
+              <Button
+                variant={"ghost"}
+                className=" flex items-center justify-between "
+              >
+                <p className=" font-semibold text-red-600">Report</p>
+                <Flag className=" text-red-600" />
+              </Button>
+            )}
           </div>
           <Button
             variant={"ghost"}
